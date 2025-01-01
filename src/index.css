@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 2s ease-in-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 1.5s ease-in-out;
+}
+
+.animate-bounce {
+  animation: bounce 1.5s infinite;
+}
+
+/* Custom Colors */
+:root {
+  --gold: #FFD700;
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.bg-gold {
+  background-color: var(--gold);
+}
+
+.bg-turquoise {
+  background-color: #40E0D0; /* Turquoise */
+}
+.text-gold {
+  color: #FFD700; /* Gold */
+}
+.text-classic-blue {
+  color: #0F4C81; /* Classic Blue */
+}
