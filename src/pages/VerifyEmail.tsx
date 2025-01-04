@@ -10,7 +10,7 @@ function VerifyEmail() {
   const secret = searchParams.get('secret');
   const [isVerifying, setIsVerifying] = useState(true);
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [_, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {

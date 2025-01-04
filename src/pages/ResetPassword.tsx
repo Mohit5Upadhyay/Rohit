@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useAuth } from '../appwrite/auth';
+
 import { account } from '../appwrite/appwriteConfig';
 
 function ResetPassword() {

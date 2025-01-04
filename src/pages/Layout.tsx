@@ -21,7 +21,7 @@ function Layout() {
   const [currentBanner, setCurrentBanner] = useState(BANNER_MAPPING['/']);
   const [isChangingBanner, setIsChangingBanner] = useState(false);
   const [showAboutDropdown, setShowAboutDropdown] = useState(false);
-  const [showBooksDropdown, setShowBooksDropdown] = useState(false);
+ 
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout>();
 
@@ -116,15 +116,11 @@ function Layout() {
               Pictures
             </Link>
             
-            <div 
-              className="relative"
-              onMouseEnter={() => handleMouseEnter(setShowBooksDropdown)}
-              onMouseLeave={() => handleMouseLeave(setShowBooksDropdown)}
-            >
+          
               <Link to="/books" className="text-classic-blue hover:text-gold transition-colors">
                 Books
               </Link>
-            </div>
+           
             
             {user ? (
               <button 

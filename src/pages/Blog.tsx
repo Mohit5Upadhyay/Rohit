@@ -21,7 +21,7 @@ function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { user, isAdmin } = useAuth();
+  const {  isAdmin } = useAuth();
 
   useEffect(() => {
     fetchPosts();
