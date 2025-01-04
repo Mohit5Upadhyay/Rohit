@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { databases } from '../appwrite/appwriteConfig';
@@ -79,15 +81,15 @@ function Blog() {
   const remainingPosts = posts.slice(1);
 
   return (
-    <div className="min-h-screen bg-turquoise py-10 px-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black py-12 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-12">
-          <h1 className="text-4xl font-bold text-gold">Blog</h1>
+          <h1 className="text-5xl font-bold text-gold">Blog</h1>
           
           {isAdmin() && (
             <Link 
               to="/blog/new"
-              className="px-6 py-2 bg-classic-blue text-gold rounded-lg hover:bg-opacity-90 transition-colors flex items-center gap-2"
+              className="px-6 py-3 bg-gold text-gray-900 rounded-lg hover:bg-opacity-90 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl"
             >
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -110,7 +112,7 @@ function Blog() {
         {featuredPost && (
           <div className="mb-16">
             <Link to={`/blog/${featuredPost.id}`}>
-              <div className="bg-white rounded-lg shadow-xl overflow-hidden md:flex">
+              <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-xl overflow-hidden md:flex">
                 <div className="md:w-2/3">
                   <img
                     src={featuredPost.imageUrl}
@@ -127,10 +129,10 @@ function Blog() {
                         </span>
                       ))}
                     </div>
-                    <h2 className="text-3xl font-bold text-classic-blue mb-4">
+                    <h2 className="text-3xl font-bold text-gold mb-4">
                       {featuredPost.title}
                     </h2>
-                    <p className="text-gray-600 mb-4">{featuredPost.excerpt}</p>
+                    <p className="text-gray-400 mb-4">{featuredPost.excerpt}</p>
                   </div>
                   <div className="flex items-center justify-between text-sm text-gray-500">
                     <span>{new Date(featuredPost.date).toLocaleDateString()}</span>
@@ -147,7 +149,7 @@ function Blog() {
           {remainingPosts.map((post) => (
             <div key={post.id} className="group">
               <Link to={`/blog/${post.id}`} className="block">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 group-hover:scale-[1.02]">
+                <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 group-hover:scale-[1.02]">
                   <div className="relative">
                     <img
                       src={post.imageUrl}
@@ -163,10 +165,10 @@ function Blog() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <h2 className="text-xl font-bold text-classic-blue mb-3 group-hover:text-gold transition-colors">
+                    <h2 className="text-xl font-bold text-gold mb-3 group-hover:text-white transition-colors">
                       {post.title}
                     </h2>
-                    <p className="text-gray-600 mb-4 line-clamp-2">{post.excerpt}</p>
+                    <p className="text-gray-400 mb-4 line-clamp-2">{post.excerpt}</p>
                     <div className="flex justify-between items-center text-sm text-gray-500">
                       <span>{new Date(post.date).toLocaleDateString()}</span>
                       <span>{calculateReadingTime(post.content)}</span>
@@ -176,16 +178,16 @@ function Blog() {
               </Link>
 
               {isAdmin() && (
-                <div className="mt-4 pt-4 border-t flex justify-end gap-4">
+                <div className="mt-4 pt-4 border-t border-gray-700 flex justify-end gap-4">
                   <Link
                     to={`/blog/edit/${post.id}`}
-                    className="text-classic-blue hover:text-gold"
+                    className="text-gold hover:text-white transition-colors"
                   >
                     Edit
                   </Link>
                   <button
                     onClick={() => handleDelete(post.id)}
-                    className="text-red-500 hover:text-red-700"
+                    className="text-red-500 hover:text-red-700 transition-colors"
                   >
                     Delete
                   </button>

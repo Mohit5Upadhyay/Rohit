@@ -1,3 +1,6 @@
+
+
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './appwrite/auth';
 import Layout from './pages/Layout';
@@ -9,7 +12,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Books from './pages/Books';
 import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost'; // Import BlogPost component
+import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
 import Pictures from './pages/Pictures';
 import Login from './pages/Login';
@@ -29,26 +32,29 @@ function App() {
       <AuthProvider>
         <div className="font-sans min-h-screen bg-turquoise">
           <Routes>
-            {/* Public Routes */}
+            {/* Public auth routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
 
-            {/* Protected Routes */}
+            {/* Public routes */}
             <Route element={<Layout />}>
-              <Route element={<ProtectedRoute />}>
-                {/* Regular User Routes */}
-                <Route index element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/books" element={<Books />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:id" element={<BlogPost />} /> {/* Add BlogPost route */}
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/pictures" element={<Pictures />} />
+              <Route index element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/books" element={<Books />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/pictures" element={<Pictures />} />
 
-                {/* Admin Only Routes */}
+              {/* Protected blog routes */}
+              <Route element={<ProtectedRoute />}>
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:id" element={<BlogPost />} />
+              </Route>
+
+              {/* Admin-only blog actions */}
+              <Route element={<ProtectedRoute />}>
                 <Route element={<AdminRoute />}>
                   <Route path="/blog/new" element={<NewBlog />} />
                   <Route path="/blog/edit/:id" element={<EditBlog />} />
@@ -56,10 +62,10 @@ function App() {
                   <Route path="/books/new" element={<NewBook />} />
                 </Route>
               </Route>
-            </Route>
 
-            {/* 404 Route */}
-            <Route path="*" element={<NotFound />} />
+              {/* 404 Route */}
+              <Route path="*" element={<NotFound />} />
+            </Route>
           </Routes>
         </div>
       </AuthProvider>
