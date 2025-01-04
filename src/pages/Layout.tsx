@@ -5,11 +5,11 @@ import { useAuth } from '../appwrite/auth';
 
 // Banner mapping
 const BANNER_MAPPING = {
-  '/': '/rohit.jpeg',
+  '/': '/home.png',
   '/about': '/about.png',
   '/blog': '/blogs.png',
   '/contact': '/contact.jpg',
-  '/pictures': '/downloadbanner2.jpeg',
+  '/pictures': '/pictures.jpeg',
   '/books': '/book.jpg',
   // '/awards': '/downloadbanner2.jpeg',
 };

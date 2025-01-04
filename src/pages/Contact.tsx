@@ -154,9 +154,9 @@ function Contact() {
           <div className="space-y-8">
             <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-xl p-8">
               <h2 className="text-3xl font-semibold text-gold mb-4">Literary Agent</h2>
-              <p className="text-gray-400 mb-2">John Smith</p>
-              <p className="text-gray-400 mb-2">Literary Agency Name</p>
-              <p className="text-gray-400 mb-2">agent@literaryagency.com</p>
+              <p className="text-gray-400 mb-1">At this time, I am not represented by a literary agent. <br />
+              For inquiries or collaboration opportunities. </p>
+              <p className="text-gray-400 mb-2">Please contact me directly at upadhyayr8171@gmail.com</p>
             </div>
 
             <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-xl p-8">
@@ -195,7 +195,9 @@ function Contact() {
                 Location
               </h2>
               <p className="text-gray-400">
-                Based in Kolkata, India
+              Dwarka Sector 14, Bharat Vihar <br />
+              Som Bazar Road<br />
+              New Delhi, Delhi - 110078, India
               </p>
             </div>
           </div>
