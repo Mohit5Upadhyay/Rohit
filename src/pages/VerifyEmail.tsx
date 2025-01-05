@@ -10,7 +10,7 @@ function VerifyEmail() {
   const secret = searchParams.get('secret');
   const [isVerifying, setIsVerifying] = useState(true);
   const [error, setError] = useState('');
-  const [_, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -90,6 +90,8 @@ function VerifyEmail() {
       );
     }
 
+    if(success) {
+
     return (
       <div className="text-center">
         <div className="h-16 w-16 mx-auto mb-4 text-green-500">
@@ -106,7 +108,8 @@ function VerifyEmail() {
         </p>
       </div>
     );
-  };
+  }
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 flex flex-col justify-center py-12 px-4">
@@ -122,3 +125,7 @@ function VerifyEmail() {
 }
 
 export default VerifyEmail;
+
+
+
+
