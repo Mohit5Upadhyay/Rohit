@@ -103,7 +103,7 @@ function NewBlog() {
 
   return (
     <div className="max-w-4xl mx-auto py-12 px-4">
-      <h1 className="text-3xl font-bold text-classic-blue mb-8">Create New Blog Post</h1>
+      <h1 className="text-3xl font-bold text-gold mb-8">Create New Blog Post</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {error && (
@@ -111,7 +111,7 @@ function NewBlog() {
         )}
 
         <div>
-          <label className="block text-gray-700 mb-2">Title</label>
+          <label className="block text-gold mb-2">Title</label>
           <input
             type="text"
             required
@@ -122,7 +122,7 @@ function NewBlog() {
         </div>
 
         <div>
-          <label className="block text-gray-700 mb-2">Excerpt</label>
+          <label className="block text-gold mb-2">Excerpt</label>
           <textarea
             required
             rows={3}
@@ -133,7 +133,7 @@ function NewBlog() {
         </div>
 
         <div>
-          <label className="block text-gray-700 mb-2">Category</label>
+          <label className="block text-gold mb-2">Category</label>
           <input
             type="text"
             required
@@ -144,7 +144,7 @@ function NewBlog() {
         </div>
 
         <div>
-          <label className="block text-gray-700 mb-2">Cover Image</label>
+          <label className="block text-gold mb-2">Cover Image</label>
           <input
             type="file"
             accept="image/*"
@@ -155,7 +155,7 @@ function NewBlog() {
         </div>
 
         <div>
-          <label className="block text-gray-700 mb-2">Content</label>
+          <label className="block text-gold mb-2">Content</label>
           <Editor
             apiKey={conf.appwriteTinyMCEApiKey}
             onInit={(_, editor) => editorRef.current = editor}
