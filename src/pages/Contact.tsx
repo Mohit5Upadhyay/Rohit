@@ -1,7 +1,7 @@
 
 
 import { useState, FormEvent } from 'react';
-import { FaLinkedin, FaTwitter, FaInstagram, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaLinkedin, FaTwitter, FaInstagram, FaMapMarkerAlt, FaFacebook, FaEnvelope } from 'react-icons/fa';
 import { databases } from '../appwrite/appwriteConfig';
 import { ID } from 'appwrite';
 import conf from '../config/conf';
@@ -23,6 +23,9 @@ function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterSuccess, setNewsletterSuccess] = useState(false);
+  const [newsletterError, setNewsletterError] = useState<string | null>(null);
 
   const validateEmail = (email: string): boolean => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -64,6 +67,25 @@ function Contact() {
       console.error(err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleNewsletterSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setNewsletterError(null);
+
+    try {
+      if (!validateEmail(newsletterEmail)) {
+        throw new Error('Please enter a valid email address');
+      }
+
+      // Add your newsletter subscription logic here
+
+      setNewsletterSuccess(true);
+      setNewsletterEmail('');
+    } catch (err) {
+      setNewsletterError(err instanceof Error ? err.message : 'Failed to subscribe');
+      console.error(err);
     }
   };
 
@@ -152,12 +174,6 @@ function Contact() {
           </div>
 
           <div className="space-y-8">
-            <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-xl p-8">
-              <h2 className="text-3xl font-semibold text-gold mb-4">Literary Agent</h2>
-              <p className="text-gray-400 mb-1">At this time, I am not represented by a literary agent. <br />
-              For inquiries or collaboration opportunities. </p>
-              <p className="text-gray-400 mb-2">Please contact me directly at upadhyayr8171@gmail.com</p>
-            </div>
 
             <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-xl p-8">
               <h2 className="text-3xl font-semibold text-gold mb-4">Connect</h2>
@@ -186,6 +202,20 @@ function Contact() {
                 >
                   <FaInstagram size={24} />
                 </a>
+                <a 
+                  href="https://www.facebook.com/yourprofile" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gold hover:text-white transition-colors"
+                >
+                  <FaFacebook size={24} />
+                </a>
+                <a 
+                  href="mailto:example@example.com" 
+                  className="text-gold hover:text-white transition-colors"
+                >
+                  <FaEnvelope size={24} />
+                </a>
               </div>
             </div>
 
@@ -200,6 +230,39 @@ function Contact() {
               New Delhi, Delhi - 110078, India
               </p>
             </div>
+
+            <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-xl p-8">
+              <h2 className="text-3xl font-semibold text-gold mb-4">Subscribe to my Newsletter</h2>
+              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-2 bg-gray-800 text-white border border-gray-700 rounded-lg focus:border-gold outline-none"
+                  value={newsletterEmail}
+                  onChange={e => setNewsletterEmail(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-gold text-gray-900 rounded-lg hover:bg-opacity-90 transition-colors"
+                >
+                  Subscribe
+                </button>
+              </form>
+
+              {newsletterSuccess && (
+                <div className="mt-4 p-4 bg-green-100 text-green-700 rounded-lg">
+                  Subscribed successfully!
+                </div>
+              )}
+
+              {newsletterError && (
+                <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-lg">
+                  {newsletterError}
+                </div>
+              )}
+            </div>
+
           </div>
         </div>
       </div>

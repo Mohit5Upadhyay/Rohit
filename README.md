@@ -1,50 +1,72 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Rohit Upadhyay's Personal [Website](https://www.rohitupadhyay.me/)
 
-Currently, two official plugins are available:
+Welcome to the personal website of Rohit Upadhyay, built with React, TypeScript, and Vite. This project showcases Rohit's portfolio, blog, and contact information.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [About](#about)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contact](#contact)
+- [License](#license)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## About
 
-- Configure the top-level `parserOptions` property like this:
+This website serves as a personal portfolio and blog for Rohit Upadhyay. It includes sections for biography, blog posts, contact information, and more. The site is designed with a black and gold theme to provide an elegant and professional look.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Features
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Home Page**: Introduction and latest updates.
+- **About Page**: Biography and background information.
+- **Blog Page**: Collection of blog posts.
+- **Contact Page**: Contact form and social media links.
+- **Newsletter Subscription**: Users can subscribe to the newsletter.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Installation
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+To get started with the project, follow these steps:
+
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/yourusername/Rohit.git
+   cd Rohit
+
+2. **Install Dependencies:**
+   ```sh
+   npm install
+
+3. **Start development Server:**
+   ```sh
+   npm run dev
+
+4. **Project Build:**
+   ```sh
+   npm run build
+
+### Usage
+
+After starting the development server, you can access the website at `http://localhost:5173`. Navigate through the different sections to explore the features.
+
+### Newsletter Subscription
+
+Users can subscribe to the newsletter by entering their email address. Make sure to integrate with your preferred email marketing service.
+
+### Contact
+
+For inquiries or collaboration opportunities, please contact Rohit Upadhyay directly at upadhyayr8171@gmail.com.
+
+Connect with Rohit on social media:
+
+- [LinkedIn](https://linkedin.com/in/rohit5upadhyay)
+- [Twitter](https://twitter.com/rohit5upadhyay)
+- [Instagram](https://instagram.com/rohit5upadhyay)
+- [LinkedIn](https://facebook.com/rohit5upadhyay)
+- [Email](mailto:upadhyayr8171@gmail.com)
+
+
+### License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
