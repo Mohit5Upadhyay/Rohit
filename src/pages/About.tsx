@@ -12,7 +12,9 @@ const About = () => {
         <p className="text-lg leading-relaxed text-gray-300 mb-4">
           As a writer, I want my words to be like a friend's voice, offering consolation, direction, and occasionally a gentle prod to recognize the beauty in your tale. My relationship with each reader is as personal as my writing. Know that I wrote this with you in mind, whether your goal is to explore, think, or discover a different viewpoint.
         </p>
-        
+        <p className="text-lg leading-relaxed text-gray-300">
+          Greetings from my world, where stories are more than words; they are conduits for growth, healing, and understanding.
+        </p>
         <br />
         <p className="text-lg leading-relaxed text-gray-300">
          I’m so glad that you are here :)
