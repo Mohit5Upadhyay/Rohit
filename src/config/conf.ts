@@ -12,6 +12,8 @@ const conf = {
     appwriteBlogImageBucketId: String(import.meta.env.VITE_APPWRITE_BLOG_IMAGE_BUCKET_ID),
     appwriteTinyMCEApiKey: String(import.meta.env.VITE_TINY_MCE_EDITOR_API_KEY),
     appwriteAdminTeamId: String(import.meta.env.VITE_APPWRITE_ADMIN_TEAM_ID),
+    appwriteNewsletterFunctionId: String(import.meta.env.VITE_APPWRITE_NEWSLETTER_FUNCTION_ID),
+    appwriteNewsletterCollectionId: String(import.meta.env.VITE_APPWRITE_NEWSLETTER_COLLECTION_ID),
 };
 
 // Validation
