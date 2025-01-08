@@ -583,9 +583,10 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../appwrite/auth";
-import { Client, Functions,Databases } from "appwrite";
-import conf from "../config/conf";
-import toast, { Toaster } from 'react-hot-toast';
+import { useNewsletter } from "../hooks/useNewsletter";
+import { toast, Toaster } from 'react-hot-toast';
+
+
 
 // Banner mapping
 const BANNER_MAPPING = {
@@ -597,13 +598,7 @@ const BANNER_MAPPING = {
   "/books": "/book.jpg",
 };
 
-// Initialize Appwrite
-const client = new Client()
-  .setEndpoint(conf.appwriteEndpoint)
-  .setProject(conf.appwriteProjectId);
 
-const functions = new Functions(client);
-const databases = new Databases(client);
 
 function Layout() {
   const { user, logout } = useAuth();
@@ -615,7 +610,8 @@ function Layout() {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [isNewsletterVisible, setIsNewsletterVisible] = useState(false);
   const [email, setEmail] = useState("");
-  const [isSubscribing, setIsSubscribing] = useState(false);
+
+  const { isSubscribing, subscribe } = useNewsletter();
   const timeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
@@ -668,38 +664,24 @@ function Layout() {
   };
 
   const handleSubscribe = async () => {
-    if (!email || !email.includes("@")) {
-      toast.error("Please enter a valid email address");
-      return;
-    }
-
     try {
-      setIsSubscribing(true);
-     // Execute newsletter function
-     await functions.createExecution(
-      conf.appwriteNewsletterFunctionId,
-      JSON.stringify({ email })
-    );
-
-    // Save to newsletter collection
-    await databases.createDocument(
-      conf.appwriteDatabaseId,
-    conf.appwriteNewsletterCollectionId,
-      'unique()',
-      {
-        email: email,
-        subscribedAt: new Date().toISOString()
+      if (!email || !email.includes('@')) {
+        toast.error('Please enter a valid email address');
+        return;
       }
-    );
-      setIsNewsletterVisible(false);
-      toast.success("Successfully subscribed to newsletter!");
+
+      const success = await subscribe(email);
+      if (success) {
+        setIsNewsletterVisible(false);
+        setEmail('');
+        toast.success('Successfully subscribed to newsletter!');
+      }
     } catch (error) {
-      console.error("Newsletter subscription failed:", error);
-      toast.error("Failed to subscribe. Please try again later.");
-    } finally {
-      setIsSubscribing(false);
+      console.error('Newsletter subscription failed:', error);
+      toast.error('Failed to subscribe. Please try again later.');
     }
   };
+
 
   useEffect(() => {
     return () => {

@@ -235,7 +235,7 @@ function Contact() {
                   <FaFacebook size={24} />
                 </a>
                 <a 
-                  href="mailto:example@example.com" 
+                  href="mailto:upadhyayr8171@gmail.com.com" 
                   className="text-gold hover:text-white transition-colors"
                 >
                   <FaEnvelope size={24} />

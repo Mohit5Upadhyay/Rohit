@@ -14,6 +14,7 @@ const conf = {
     appwriteAdminTeamId: String(import.meta.env.VITE_APPWRITE_ADMIN_TEAM_ID),
     appwriteNewsletterFunctionId: String(import.meta.env.VITE_APPWRITE_NEWSLETTER_FUNCTION_ID),
     appwriteNewsletterCollectionId: String(import.meta.env.VITE_APPWRITE_NEWSLETTER_COLLECTION_ID),
+    appwriteApiKey: String(import.meta.env.VITE_APPWRITE_API_KEY),
 };
 
 // Validation
