@@ -265,6 +265,9 @@ function Pictures() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
+  const [isImageLoading, setIsImageLoading] = useState(false);
+
   const { isAdmin } = useAuth();
 
   useEffect(() => {
@@ -274,6 +277,23 @@ function Pictures() {
   useEffect(() => {
     filterImages();
   }, [images, activeCategory]);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedImage(null);
+    };
+    
+    if (selectedImage) {
+      document.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
+    
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
+  
 
   const fetchImages = async () => {
     try {
@@ -349,6 +369,10 @@ function Pictures() {
       setDeletingId(null);
     }
   };
+  const handleImageClick = (image: Image) => {
+    setSelectedImage(image);
+    setIsImageLoading(true);
+  };
 
   if (loading) return <div className="text-center py-8">Loading...</div>;
   if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
@@ -405,7 +429,11 @@ function Pictures() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredImages.map((image) => (
-            <div key={image.id} className="group relative">
+            <div 
+              key={image.id} 
+              className="group relative cursor-pointer" 
+              onClick={() => handleImageClick(image)}
+            >
               <div className="relative overflow-hidden rounded-xl shadow-lg aspect-square 
                             backdrop-blur-sm bg-gray-900/20 transition-transform 
                             duration-500 hover:scale-[1.02]">
@@ -460,6 +488,72 @@ function Pictures() {
             </div>
           ))}
         </div>
+
+      {/* Image Modal */}
+        {selectedImage && (
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm animate-fadeIn"
+            onClick={() => setSelectedImage(null)}
+          >
+            <div 
+              className="relative max-w-7xl w-full mx-4 animate-modalIn"
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-12 right-0 p-3 text-white/80 hover:text-white
+                         transition-all duration-300 rounded-full hover:bg-white/10
+                         transform hover:scale-110"
+                aria-label="Close modal"
+              >
+                <svg 
+                  className="w-6 h-6" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M6 18L18 6M6 6l12 12" 
+                  />
+                </svg>
+              </button>
+
+              <div className="relative rounded-2xl overflow-hidden bg-gray-900 shadow-2xl">
+                {isImageLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-12 h-12 border-4 border-gold/20 border-t-gold rounded-full animate-spin" />
+                  </div>
+                )}
+                
+                <img
+                  src={selectedImage.url}
+                  alt={selectedImage.title}
+                  className={`w-full h-full object-contain max-h-[85vh] transition-opacity duration-300
+                           ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}
+                  onLoad={() => setIsImageLoading(false)}
+                  onLoadStart={() => setIsImageLoading(true)}
+                />
+
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent">
+                  <div className="p-6 space-y-2">
+                    
+                    <div className="flex items-center gap-3">
+                      <span className="px-3 py-1 rounded-full bg-classic-blue/80 text-gold text-sm">
+                        {selectedImage.category}
+                      </span>
+                      <time className="text-white/70 text-sm">
+                        {new Date(selectedImage.date).toLocaleDateString()}
+                      </time>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
