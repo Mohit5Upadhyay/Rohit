@@ -35,7 +35,7 @@ function Home() {
 <p className="text-gray-300 leading-relaxed mb-4">Today, Rohit combines his life insights with his passion for writing, crafting motivational blogs and stories that inspire personal growth and transformation.
 </p>
 
-<p className="text-gray-300 leading-relaxed mb-4">Rohit is currently working on his book, Wisdom to Wonders, a collection of transformative stories and lessons, while actively sharing his thoughts through his blog. His writing seeks to inspire readers to find meaning, embrace growth, and discover the beauty in their unique journeys.</p>
+<p className="text-gray-300 leading-relaxed mb-4">Rohit is currently working on his book, <i>Wisdom to Wonders</i>, a collection of transformative stories and lessons, while actively sharing his thoughts through his blog. His writing seeks to inspire readers to find meaning, embrace growth, and discover the beauty in their unique journeys.</p>
 
 <p className="text-gray-300 leading-relaxed mb-4" >As a firm believer in the power of language, Rohit uses his words as conduits for healing, understanding, and connection. Whether you’re here to explore his blog or embark on your journey of self-discovery, Rohit’s work is crafted with you in mind.
 </p>
