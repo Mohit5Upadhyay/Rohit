@@ -27,13 +27,19 @@ function Home() {
           I’m so glad that you are here :)
         </p> */}
 
-<p className="text-gray-300 leading-relaxed mb-4">Rohit Upadhyay is an author,  a storyteller and a well known writer  whose journey began in the corporate corridors of Health Management. Armed with an MBA, he navigated the structured world of business. However, his true calling lay beyond the corporate world—in the art of storytelling and creative expression.</p>
+<p className="text-gray-300 leading-relaxed mb-4">Rohit Upadhyay is an aspiring author, a storyteller, and a writer by heart whose journey began in the corporate corridors of Health Management. Armed with an MBA, he navigated the structured world of business. However, his true calling lay beyond the corporate world in the art of storytelling and creative expression.
 
-<p className="text-gray-300 leading-relaxed mb-4">Today, Rohit combines his life insights with his passion for writing, crafting motivational blogs and stories that inspire personal growth and transformation.</p>
 
-<p className="text-gray-300 leading-relaxed mb-4">Rohit is currently working on his book, *Wisdom to Wonders*, a collection of transformative stories and lessons, while actively sharing his thoughts through his blog. His writing seeks to inspire readers to find meaning, embrace growth, and discover the beauty in their unique journeys.</p>
+</p>
 
-<p className="text-gray-300 leading-relaxed mb-4" >A firm believer in the power of language, Rohit uses his words as conduits for healing, understanding, and connection. Whether you’re here to explore his blog or embark on your own journey of self-discovery, Rohit’s work is crafted with you in mind.</p>
+<p className="text-gray-300 leading-relaxed mb-4">Today, Rohit combines his life insights with his passion for writing, crafting motivational blogs and stories that inspire personal growth and transformation.
+</p>
+
+<p className="text-gray-300 leading-relaxed mb-4">Rohit is currently working on his book, Wisdom to Wonders, a collection of transformative stories and lessons, while actively sharing his thoughts through his blog. His writing seeks to inspire readers to find meaning, embrace growth, and discover the beauty in their unique journeys.</p>
+
+<p className="text-gray-300 leading-relaxed mb-4" >As a firm believer in the power of language, Rohit uses his words as conduits for healing, understanding, and connection. Whether you’re here to explore his blog or embark on your journey of self-discovery, Rohit’s work is crafted with you in mind.
+</p>
+<p className="text-gray-300 leading-relaxed mb-4">I’m extremely happy to have your presence in my world.</p>
 
       </section>
     </main>

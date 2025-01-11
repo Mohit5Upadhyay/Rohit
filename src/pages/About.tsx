@@ -44,7 +44,7 @@ const About: React.FC = () => {
           The journey has not been without challenges. Despite having an MBA in Health Management and having walked the corridors of structure and strategy, my heart has always been in the unrestricted world of creativity.
         </p>
         <p className="text-lg leading-relaxed text-gray-300 mb-4">
-          As a writer, I want my words to sound like a friend's voice, providing guidance, comfort, and sometimes a gentle reminder to appreciate the beauty in your story. Just like my writing, my relationship with each reader is unique. Whether you want to think, explore, or find a different perspective, you’ll get all dimensions to read. And know this—I craft words by having you in mind always.
+          As a writer, I want my words to sound like a friend's voice, providing guidance, comfort, and sometimes a gentle reminder to appreciate the beauty in your story. Just like my writing, my relationship with each reader is unique. Whether you want to think, explore, or find a different perspective, you’ll get all dimensions to read. And know this, I craft words by having you in mind always.
         </p>
         <p className="text-lg leading-relaxed text-gray-300 mb-4">
           Greetings from my world, where stories are more than just words; they serve as tools for understanding, healing, and personal development.
