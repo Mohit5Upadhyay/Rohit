@@ -27,7 +27,7 @@ function Home() {
           I’m so glad that you are here :)
         </p> */}
 
-<p className="text-gray-300 leading-relaxed mb-4">Rohit Upadhyay is a writer and storyteller whose journey began in the corporate corridors of Health Management. Armed with an MBA, he navigated the structured world of business. However, his true calling lay beyond the corporate world—in the art of storytelling and creative expression.</p>
+<p className="text-gray-300 leading-relaxed mb-4">Rohit Upadhyay is an author,  a storyteller and a well known writer  whose journey began in the corporate corridors of Health Management. Armed with an MBA, he navigated the structured world of business. However, his true calling lay beyond the corporate world—in the art of storytelling and creative expression.</p>
 
 <p className="text-gray-300 leading-relaxed mb-4">Today, Rohit combines his life insights with his passion for writing, crafting motivational blogs and stories that inspire personal growth and transformation.</p>
 
