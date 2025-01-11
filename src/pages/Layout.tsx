@@ -304,12 +304,12 @@ import { toast, Toaster } from 'react-hot-toast';
 
 // Banner mapping
 const BANNER_MAPPING = {
-  "/": "/home.png",
-  "/about": "/about.png",
-  "/blog": "/blogs.png",
-  "/contact": "/contact.jpg",
-  "/pictures": "/pictures.jpeg",
-  "/books": "/book.jpg",
+  "/": "/home.webp",
+  "/about": "/about.webp",
+  "/blog": "/blogs.webp",
+  "/contact": "/contact.webp",
+  "/pictures": "/pictures.webp",
+  "/books": "/book.webp",
 };
 
 
@@ -600,7 +600,7 @@ function Layout() {
 
       <footer className="bg-slate-900 text-center p-4 mt-auto">
         <div className="flex flex-col items-center">
-          <img src="footer.png" alt="Footer Image" className="w-16 h-16 mb-2" />
+          <img src="footer.webp" alt="Footer Image" className="w-16 h-16 mb-2" />
           <p className="text-gold">
             &copy; {new Date().getFullYear()} www.rohitupadhyay.me | All rights
             reserved.

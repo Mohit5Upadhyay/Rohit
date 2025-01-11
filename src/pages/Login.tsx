@@ -37,7 +37,7 @@ function Login() {
           {/* Image Section */}
           <div className="md:w-1/2 hidden md:block">
             <img
-              src="/login.jpg"
+              src="/login.webp"
               alt="Login Image"
               className="w-full h-full object-cover"
             />

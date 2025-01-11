@@ -57,7 +57,7 @@ function Signup() {
           {/* Image Section */}
           <div className="md:w-1/2 hidden md:block">
             <img
-              src="/login.jpg"
+              src="/login.webp"
               alt="Signup Image"
               className="w-full h-full object-cover"
             />
