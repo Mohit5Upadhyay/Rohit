@@ -19,6 +19,11 @@ interface User extends Models.User<Models.Preferences> {
     role: 'admin' | 'user';
 }
 
+
+interface AuthProviderProps {
+    children: ReactNode;
+}
+
 interface AuthContextType {
     user: User | null;
     loading: boolean;
@@ -47,7 +52,7 @@ const AuthContext = createContext<AuthContextType>({
     clearError: () => {}
 });
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -124,7 +129,7 @@ const login = async (email: string, password: string) => {
                 return;
             }
 
-            navigate(userWithRole.role === 'admin' ? '/admin/dashboard' : '/dashboard');
+            navigate(userWithRole.role === 'admin' ? '/admin/dashboard' : '/');
         } catch (teamError) {
             // Handle teams permission error gracefully
             console.warn('Unable to check admin status:', teamError);
@@ -133,7 +138,7 @@ const login = async (email: string, password: string) => {
                 ...currentUser,
                 role: 'user'
             } as User);
-            navigate('/dashboard');
+            navigate('/');
         }
     } catch (error: any) {
         setError(error.message);
@@ -261,7 +266,7 @@ const logout = async () => {
 
     const clearError = () => setError(null);
 
-    const value = {
+    const value :AuthContextType = {
         user,
         loading,
         error,
@@ -271,8 +276,8 @@ const logout = async () => {
         resetPassword,
         updateProfile,
         sendVerificationEmail,
-        isAdmin,
-        clearError
+        isAdmin: () => user?.role === 'admin',
+        clearError: () => setError(null)
     };
 
     return (
