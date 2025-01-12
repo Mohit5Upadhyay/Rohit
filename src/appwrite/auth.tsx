@@ -148,48 +148,120 @@ const login = async (email: string, password: string) => {
     }
 };
 
+// const signup = async (email: string, password: string, name: string, role: 'admin' | 'user' = 'user') => {
+//     try {
+//         setLoading(true);
+//         setError(null);
+        
+//         // Create user first
+//         const newUser = await account.create(
+//             ID.unique(),
+//             email,
+//             password,
+//             name
+//         );
+
+//         // Create session
+//         await account.createEmailPasswordSession(email, password);
+
+//         if (role === 'admin') {
+//             try {
+//                 // Add to admin team
+//                 await teams.createMembership(
+//                     conf.appwriteAdminTeamId,
+//                     [newUser.$id],
+//                     'owner', // Give admin role in team
+//                     `${window.location.origin}/verify-admin`
+//                 );
+//             } catch (teamError) {
+//                 console.error('Failed to add user to admin team:', teamError);
+//                 // Continue with regular user role
+//                 role = 'user';
+//             }
+//         }
+
+//         const userWithRole = {
+//             ...newUser,
+//             role
+//         } as User;
+
+//         setUser(userWithRole);
+//         await sendVerificationEmail();
+        
+//         navigate('/verify-email');
+//     } catch (error: any) {
+//         setError(error.message);
+//         throw error;
+//     } finally {
+//         setLoading(false);
+//     }
+// };
+
+
+
+
 const signup = async (email: string, password: string, name: string, role: 'admin' | 'user' = 'user') => {
     try {
         setLoading(true);
         setError(null);
-        
-        // Create user first
+        console.log('Starting signup process...');
+
+        // Create user
         const newUser = await account.create(
             ID.unique(),
             email,
             password,
             name
         );
+        console.log('User created successfully:', newUser);
 
-        // Create session
-        await account.createEmailPasswordSession(email, password);
+        // Create session and send verification
+        try {
+            await account.createEmailPasswordSession(email, password);
+            console.log('Session created');
+            
+            await sendVerificationEmail();
+            console.log('Verification email sent');
+        } catch (sessionError) {
+            console.error('Session/verification error:', sessionError);
+            setError('Account created but session failed. Please try logging in.');
+        }
 
+        // Handle admin role
         if (role === 'admin') {
             try {
-                // Add to admin team
                 await teams.createMembership(
                     conf.appwriteAdminTeamId,
                     [newUser.$id],
-                    'owner', // Give admin role in team
+                    'owner',
                     `${window.location.origin}/verify-admin`
                 );
+                console.log('Added to admin team');
             } catch (teamError) {
-                console.error('Failed to add user to admin team:', teamError);
-                // Continue with regular user role
+                console.error('Admin team error:', teamError);
                 role = 'user';
             }
         }
 
         const userWithRole = {
             ...newUser,
-            role
+            role,
+            emailVerification: false
         } as User;
 
         setUser(userWithRole);
-        await sendVerificationEmail();
         
-        navigate('/verify-email');
+        // Navigate to verification
+        navigate('/verify-email', {
+            state: {
+                email,
+                message: 'Please check your email to verify your account',
+                requiresVerification: true
+            }
+        });
+
     } catch (error: any) {
+        console.error('Signup failed:', error);
         setError(error.message);
         throw error;
     } finally {
@@ -249,13 +321,49 @@ const logout = async () => {
         }
     };
 
-    const sendVerificationEmail = async () => {
+    // const sendVerificationEmail = async () => {
+    //     try {
+    //         setLoading(true);
+    //         setError(null);
+    //         await account.createVerification(`${window.location.origin}/verify-email`);
+    //     } catch (error: any) {
+    //         setError(error.message);
+    //         throw error;
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
+
+
+
+
+
+    const sendVerificationEmail = async (): Promise<void> => {
         try {
             setLoading(true);
             setError(null);
-            await account.createVerification(`${window.location.origin}/verify-email`);
+    
+            // Construct absolute URL properly
+            const verificationUrl = new URL('/verify-email', window.location.origin).toString();
+            console.log('Sending verification email with URL:', verificationUrl);
+    
+            // Send verification email
+            const response = await account.createVerification(verificationUrl);
+            console.log('Verification email sent successfully:', response);
+    
+            // Navigate with status
+            navigate('/verify-email', {
+                state: {
+                    email: user?.email,
+                    message: 'Verification email sent. Please check your inbox.',
+                    requiresVerification: true
+                }
+            });
+    
+    
         } catch (error: any) {
-            setError(error.message);
+            console.error('Failed to send verification email:', error);
+            setError(`Failed to send verification email: ${error.message}`);
             throw error;
         } finally {
             setLoading(false);
