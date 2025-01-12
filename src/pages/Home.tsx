@@ -1,5 +1,32 @@
+
+import { Helmet } from "react-helmet-async";
+
 function Home() {
   return (
+
+    <>
+
+<Helmet>
+        <title>Rohit Upadhyay</title>
+        <meta
+          name="description"
+          content="Welcome to Rohit Upadhyay's official website. Explore books, blogs, and insights from an emerging author and storyteller."
+        />
+        <meta
+          name="keywords"
+          content="rohit upadhyay, author, writer, storyteller, books, blog"
+        />
+        <meta property="og:title" content="Home - Rohit Upadhyay" />
+        <meta
+          property="og:description"
+          content="Welcome to Rohit Upadhyay's official website. Explore books, blogs, and insights from an emerging author and storyteller."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.rohitupadhyay.me" />
+        <link rel="canonical" href="https://www.rohitupadhyay.me" />
+      </Helmet>
+    
+
     <main className="flex flex-col md:flex-row bg-gradient-to-br from-gray-900 to-black mx-4 md:mx-10 my-10 rounded-lg shadow-lg overflow-hidden">
       <div className="md:w-1/2">
         <img
@@ -43,6 +70,8 @@ function Home() {
 
       </section>
     </main>
+
+    </>
   );
 }
 
