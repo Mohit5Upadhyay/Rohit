@@ -276,8 +276,8 @@ const logout = async () => {
         resetPassword,
         updateProfile,
         sendVerificationEmail,
-        isAdmin: () => user?.role === 'admin',
-        clearError: () => setError(null)
+       isAdmin,
+       clearError
     };
 
     return (
