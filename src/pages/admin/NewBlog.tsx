@@ -15,6 +15,8 @@ interface BlogForm {
   content: string;
   category: string[];
   imageUrl: string;
+  likes: number;
+  likedBy: string[];
 }
 
 function NewBlog() {
@@ -23,7 +25,9 @@ function NewBlog() {
     excerpt: '',
     content: '',
     category: [],
-    imageUrl: ''
+    imageUrl: '',
+    likes: 0,
+    likedBy: []
   });
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -56,6 +60,53 @@ function NewBlog() {
     }
   };
 
+  // const handleSubmit = async (e: FormEvent) => {
+  //   e.preventDefault();
+  //   if (!coverImage) {
+  //     setError('Please select a cover image');
+  //     return;
+  //   }
+
+  //   setLoading(true);
+  //   setError(null);
+
+  //   try {
+  //     // Upload cover image
+  //     const imageUpload = await storages.createFile(
+  //       conf.appwriteBlogImageBucketId,
+  //       ID.unique(),
+  //       coverImage
+  //     );
+
+  //     // Create blog post
+  //     await databases.createDocument(
+  //       conf.appwriteDatabaseId,
+  //       conf.appwriteBlogCollectionId,
+  //       ID.unique(),
+  //       {
+  //         title: formData.title,
+  //         excerpt: formData.excerpt,
+  //         content: editorRef.current.getContent(),
+  //         category: formData.category,
+  //         imageUrl: storages.getFileView(
+  //           conf.appwriteBlogImageBucketId,
+  //           imageUpload.$id
+  //         ),
+  //         date: new Date().toISOString()
+  //       }
+  //     );
+
+  //     navigate('/blog');
+  //   } catch (error) {
+  //     console.error('Failed to create blog post:', error);
+  //     setError('Failed to create blog post. Please try again.');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!coverImage) {
@@ -74,7 +125,7 @@ function NewBlog() {
         coverImage
       );
 
-      // Create blog post
+      // Create blog post with likes data
       await databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteBlogCollectionId,
@@ -88,7 +139,9 @@ function NewBlog() {
             conf.appwriteBlogImageBucketId,
             imageUpload.$id
           ),
-          date: new Date().toISOString()
+          date: new Date().toISOString(),
+          likes: 0,
+          likedBy: []
         }
       );
 
@@ -100,7 +153,6 @@ function NewBlog() {
       setLoading(false);
     }
   };
-
   return (
     <div className="max-w-4xl mx-auto py-12 px-4">
       <h1 className="text-3xl font-bold text-gold mb-8">Create New Blog Post</h1>
