@@ -3,6 +3,7 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../appwrite/auth';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 interface SignupForm {
   name: string;
@@ -24,6 +25,8 @@ function Signup() {
   const [error, setError] = useState('');
   const { signup } = useAuth();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -127,40 +130,59 @@ function Signup() {
                   <option value="admin">Administrator</option>
                 </select>
               </div>
-
               <div>
-                <label className="block text-sm font-medium text-gold mb-1">
-                  Password
-                </label>
+              <label className="block text-sm font-medium text-gold mb-1">
+                Password
+              </label>
+              <div className="relative">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   required
+                  autoComplete="new-password"  
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg
-                           text-white placeholder-gray-400 
-                           focus:ring-2 focus:ring-gold/50 focus:border-transparent
-                           transition-all duration-200"
+                          text-white placeholder-gray-400 
+                          focus:ring-2 focus:ring-gold/50 focus:border-transparent
+                          transition-all duration-200"
                   placeholder="Create a password"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gold transition-colors duration-200"
+                >
+                  {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                </button>
               </div>
+            </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gold mb-1">
-                  Confirm Password
-                </label>
+            <div>
+              <label className="block text-sm font-medium text-gold mb-1">
+                Confirm Password
+              </label>
+              <div className="relative">
                 <input
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   required
+                  autoComplete="new-password"  
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg
-                           text-white placeholder-gray-400 
-                           focus:ring-2 focus:ring-gold/50 focus:border-transparent
-                           transition-all duration-200"
+                          text-white placeholder-gray-400 
+                          focus:ring-2 focus:ring-gold/50 focus:border-transparent
+                          transition-all duration-200"
                   placeholder="Confirm your password"
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gold transition-colors duration-200"
+                >
+                  {showConfirmPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                </button>
               </div>
+            </div>
 
               <button
                 type="submit"

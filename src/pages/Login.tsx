@@ -119,6 +119,7 @@ function Login() {
                       name="password"
                       type="password"
                       required
+                      autoComplete="current-password"
                       className="appearance-none block w-full px-4 py-3 border border-white/10 
                              rounded-lg bg-white/5 text-white placeholder-gray-400
                              focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-transparent
