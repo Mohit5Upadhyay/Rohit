@@ -33,7 +33,7 @@ interface AuthContextType {
     logout: () => Promise<void>;
     resetPassword: (email: string) => Promise<void>;
     updateProfile: (name: string) => Promise<void>;
-    sendVerificationEmail: () => Promise<void>;
+    // sendVerificationEmail: () => Promise<void>;
     isAdmin: () => boolean;
     clearError: () => void;
 }
@@ -47,7 +47,7 @@ const AuthContext = createContext<AuthContextType>({
     logout: async () => {},
     resetPassword: async () => {},
     updateProfile: async () => {},
-    sendVerificationEmail: async () => {},
+    // sendVerificationEmail: async () => {},
     isAdmin: () => false,
     clearError: () => {}
 });
@@ -124,10 +124,10 @@ const login = async (email: string, password: string) => {
             const userWithRole = await updateUserWithRole(currentUser);
             setUser(userWithRole);
 
-            if (!userWithRole.emailVerification) {
-                navigate('/verify-email');
-                return;
-            }
+            // if (!userWithRole.emailVerification) {
+            //     navigate('/verify-email');
+            //     return;
+            // }
 
             navigate(userWithRole.role === 'admin' ? '/admin/dashboard' : '/');
         } catch (teamError) {
@@ -220,8 +220,8 @@ const signup = async (email: string, password: string, name: string, role: 'admi
             await account.createEmailPasswordSession(email, password);
             console.log('Session created');
             
-            await sendVerificationEmail();
-            console.log('Verification email sent');
+            // await sendVerificationEmail();
+            // console.log('Verification email sent');
         } catch (sessionError) {
             console.error('Session/verification error:', sessionError);
             setError('Account created but session failed. Please try logging in.');
@@ -252,14 +252,14 @@ const signup = async (email: string, password: string, name: string, role: 'admi
         setUser(userWithRole);
         
         // Navigate to verification
-        navigate('/verify-email', {
-            state: {
-                email,
-                message: 'Please check your email to verify your account',
-                requiresVerification: true
-            }
-        });
-
+        // navigate('/verify-email', {
+        //     state: {
+        //         email,
+        //         message: 'Please check your email to verify your account',
+        //         requiresVerification: true
+        //     }
+        // });
+        navigate('/')
     } catch (error: any) {
         console.error('Signup failed:', error);
         setError(error.message);
@@ -338,37 +338,37 @@ const logout = async () => {
 
 
 
-    const sendVerificationEmail = async (): Promise<void> => {
-        try {
-            setLoading(true);
-            setError(null);
+    // const sendVerificationEmail = async (): Promise<void> => {
+    //     try {
+    //         setLoading(true);
+    //         setError(null);
     
-            // Construct absolute URL properly
-            const verificationUrl = new URL('/verify-email', window.location.origin).toString();
-            console.log('Sending verification email with URL:', verificationUrl);
+    //         // Construct absolute URL properly
+    //         const verificationUrl = new URL('/verify-email', window.location.origin).toString();
+    //         console.log('Sending verification email with URL:', verificationUrl);
     
-            // Send verification email
-            const response = await account.createVerification(verificationUrl);
-            console.log('Verification email sent successfully:', response);
+    //         // Send verification email
+    //         const response = await account.createVerification(verificationUrl);
+    //         console.log('Verification email sent successfully:', response);
     
-            // Navigate with status
-            navigate('/verify-email', {
-                state: {
-                    email: user?.email,
-                    message: 'Verification email sent. Please check your inbox.',
-                    requiresVerification: true
-                }
-            });
+    //         // Navigate with status
+    //         navigate('/verify-email', {
+    //             state: {
+    //                 email: user?.email,
+    //                 message: 'Verification email sent. Please check your inbox.',
+    //                 requiresVerification: true
+    //             }
+    //         });
     
     
-        } catch (error: any) {
-            console.error('Failed to send verification email:', error);
-            setError(`Failed to send verification email: ${error.message}`);
-            throw error;
-        } finally {
-            setLoading(false);
-        }
-    };
+    //     } catch (error: any) {
+    //         console.error('Failed to send verification email:', error);
+    //         setError(`Failed to send verification email: ${error.message}`);
+    //         throw error;
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
      const isAdmin = () => user?.role === 'admin';
 
@@ -383,7 +383,7 @@ const logout = async () => {
         logout,
         resetPassword,
         updateProfile,
-        sendVerificationEmail,
+        // sendVerificationEmail,
        isAdmin,
        clearError
     };

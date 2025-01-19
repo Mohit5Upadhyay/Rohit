@@ -42,7 +42,7 @@ function Signup() {
         formData.name,
         formData.role
       );
-      navigate('/verify-email');
+      navigate('/');
     } catch (error: any) {
       setError(error.message || 'Signup failed');
     } finally {
