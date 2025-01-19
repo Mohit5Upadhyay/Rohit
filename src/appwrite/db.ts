@@ -149,6 +149,52 @@ export const deleteBlogPost = async (id: number): Promise<void> => {
     }
 };
 
+
+
+
+
+///////////////toggle like
+
+// db.ts
+export const toggleLike = async (postId: string, userId: string): Promise<{ likes: number; liked: boolean }> => {
+    try {
+      const post = await databases.getDocument(
+        DATABASE_ID,
+        BLOGS_COLLECTION_ID,
+        postId
+      );
+  
+      const likedBy = post.likedBy || [];
+      const isLiked = likedBy.includes(userId);
+      
+    const updatedLikedBy: string[] = isLiked 
+        ? likedBy.filter((id: string) => id !== userId)
+        : [...likedBy, userId];    
+      const updatedLikes = updatedLikedBy.length;
+  
+      await databases.updateDocument(
+        DATABASE_ID,
+        BLOGS_COLLECTION_ID,
+        postId,
+        {
+          likes: updatedLikes,
+          likedBy: updatedLikedBy
+        }
+      );
+  
+      return {
+        likes: updatedLikes,
+        liked: !isLiked
+      };
+    } catch (error) {
+      console.error('Error toggling like:', error);
+      throw new Error('Failed to toggle like');
+    }
+  };
+
+
+
+
 // Additional utility functions
 export const getBlogPostsByCategory = async (category: string): Promise<BlogPost[]> => {
     try {
@@ -761,3 +807,5 @@ export const getRecentImages = async (limit: number = 10): Promise<Image[]> => {
       throw new Error('Failed to fetch recent images');
   }
 };
+
+
