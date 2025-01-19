@@ -358,6 +358,8 @@ function Pictures() {
                   <img
                     src={selectedImage.url}
                     alt={selectedImage.title}
+                    loading="eager"
+                    fetchPriority="high"
                     className={`w-full h-full object-contain max-h-[85vh] transition-opacity duration-300
                            ${isImageLoading ? "opacity-0" : "opacity-100"}`}
                     onLoad={() => setIsImageLoading(false)}

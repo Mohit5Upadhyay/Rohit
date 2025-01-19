@@ -426,6 +426,8 @@ function BlogPost() {
           <img
             src={post.imageUrl}
             alt={post.title}
+            loading="eager"
+            fetchPriority="high"
             className="w-full h-[400px] object-cover"
           />
 

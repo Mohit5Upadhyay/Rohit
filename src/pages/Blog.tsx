@@ -404,6 +404,8 @@ function Blog() {
                     <img
                       src={featuredPost.imageUrl}
                       alt={featuredPost.title}
+                      loading="eager"
+                      fetchPriority="high"
                       className="w-full h-[400px] object-cover"
                     />
                   </div>
@@ -446,6 +448,8 @@ function Blog() {
                       <img
                         src={post.imageUrl}
                         alt={post.title}
+                        loading="eager"
+                        fetchPriority="high"
                         className="w-full h-48 object-cover"
                       />
                       <div className="absolute top-4 left-4 flex gap-2">

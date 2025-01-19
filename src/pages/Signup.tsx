@@ -62,6 +62,8 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
             <img
               src="/login.webp"
               alt="Signup Image"
+              loading="eager"
+              fetchPriority="high"
               className="w-full h-full object-cover"
             />
           </div>

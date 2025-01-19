@@ -32,6 +32,8 @@ function Home() {
         <img
           src="/rohit.webp"
           alt="Rohit"
+          loading="eager"
+          fetchPriority="high"
           className="object-cover w-full h-full"
         />
       </div>
