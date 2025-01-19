@@ -306,7 +306,7 @@ function Layout() {
 
       <footer className="bg-slate-900 text-center p-4 mt-auto">
         <div className="flex flex-col items-center">
-          <img src="footer.webp" alt="Footer Image" className="w-16 h-16 mb-2" />
+          <img src="https://www.rohitupadhyay.me/footer.webp" alt="Footer Image" className="w-16 h-16 mb-2" />
           <p className="text-gold">
             &copy; {new Date().getFullYear()} www.rohitupadhyay.me | All rights
             reserved.
