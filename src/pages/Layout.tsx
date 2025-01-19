@@ -216,7 +216,7 @@ function Layout() {
         </div>
       </nav>
 
-      {isNewsletterVisible && (
+      {/* {isNewsletterVisible && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm"
@@ -259,7 +259,70 @@ function Layout() {
             </button>
           </div>
         </div>
-      )}
+      )} */}
+      {isNewsletterVisible && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6">
+    <div
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+      onClick={handleNewsletterDismiss}
+    />
+    <div
+      className="relative bg-black text-gold rounded-xl shadow-xl 
+                 w-[90%] md:w-[450px] 
+                 p-6 md:p-8
+                 transform transition-all
+                 scale-100 opacity-100"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Close button */}
+      <button
+        onClick={handleNewsletterDismiss}
+        className="absolute right-4 top-4 p-2 text-gray-400 hover:text-red-500 
+                   transition-colors duration-200"
+        aria-label="Close newsletter"
+      >
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+        </svg>
+      </button>
+
+      {/* Content */}
+      <div className="space-y-6">
+        <h2 className="text-2xl md:text-3xl font-bold">
+          Subscribe to our Newsletter
+        </h2>
+        <p className="text-gray-300 text-sm md:text-base">
+          Stay updated with our latest news and offers.
+        </p>
+        
+        {/* Form */}
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="flex-1 p-3 rounded-lg sm:rounded-r-none
+                     border-2 border-transparent
+                     focus:border-gold/50 focus:outline-none
+                     text-black transition-all duration-200"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isSubscribing}
+          />
+          <button
+            className={`px-6 py-3 bg-gold text-black font-medium
+                      rounded-lg sm:rounded-l-none
+                      hover:bg-gold/90 transition-all duration-200
+                      ${isSubscribing ? "opacity-50 cursor-not-allowed" : ""}`}
+            onClick={handleSubscribe}
+            disabled={isSubscribing}
+          >
+            {isSubscribing ? "Subscribing..." : "Subscribe"}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
 
 
 
