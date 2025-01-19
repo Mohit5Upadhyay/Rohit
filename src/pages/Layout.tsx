@@ -136,6 +136,8 @@ function Layout() {
           <img
             src={currentBanner}
             alt="Page Banner"
+            loading="eager"
+            fetchPriority="high"
             className={`w-full h-full object-cover transition-opacity duration-300 ${
               isChangingBanner ? "opacity-0" : "opacity-100"
             }`}

@@ -60,6 +60,8 @@ function Login() {
               <img
                 src="/login.webp"
                 alt="Login Image"
+                loading="eager"
+                fetchPriority="high"
                 className="w-full h-full object-cover"
               />
             </div>
