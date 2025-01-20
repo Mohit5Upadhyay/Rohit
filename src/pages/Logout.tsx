@@ -17,7 +17,7 @@ function LogoutButton() {
       await logout();
       navigate('/login');
     } catch (error) {
-      console.error('Logout failed:', error);
+      console.error('Logout failed:');
     } finally {
       setIsLoading(false);
       setShowConfirm(false);

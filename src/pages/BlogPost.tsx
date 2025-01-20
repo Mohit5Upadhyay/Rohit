@@ -362,7 +362,7 @@ function BlogPost() {
       setLikeCount(prev => prev + 1);
       setIsLiked(true);
     } catch (error) {
-      console.error('Error updating likes:', error);
+      console.error('Error updating likes:');
     } finally {
       setIsLikeLoading(false);
     }

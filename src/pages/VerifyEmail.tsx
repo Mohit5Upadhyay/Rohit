@@ -165,7 +165,7 @@ function VerifyEmail() {
         navigate('/login', { state: { message: 'Email verification successful!' }});
       }, 2000);
     } catch (error) {
-      console.error('Email verification failed:', error);
+      console.error('Email verification failed:');
       setError('Failed to verify email. Please try again or request a new verification link.');
     } finally {
       setIsVerifying(false);

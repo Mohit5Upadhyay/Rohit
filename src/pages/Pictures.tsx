@@ -83,8 +83,7 @@ function Pictures() {
             };
           } catch (error) {
             console.error(
-              `Error getting image URL for fileId ${doc.fileId}:`,
-              error
+              `Error getting image URL `
             );
             return null;
           }
@@ -93,7 +92,7 @@ function Pictures() {
 
       setImages(fetchedImages.filter((img): img is Image => img !== null));
     } catch (error) {
-      console.error("Error fetching images:", error);
+      console.error("Error fetching images:");
       setError("Failed to load images");
     } finally {
       setLoading(false);
@@ -125,7 +124,7 @@ function Pictures() {
       setImages((prevImages) => prevImages.filter((img) => img.id !== imageId));
       setError(null);
     } catch (error) {
-      console.error("Error deleting image:", error);
+      console.error("Error deleting image:");
       setError("Failed to delete image");
     } finally {
       setDeletingId(null);
@@ -288,7 +287,7 @@ function Pictures() {
                            duration-700 group-hover:scale-110"
                     loading="lazy"
                     onError={(e) => {
-                      console.error(`Failed to load image: ${image.title}`);
+                      console.error(`Failed to load image:`);
                       e.currentTarget.src = "/fallback-image.jpg";
                     }}
                   />

@@ -78,7 +78,7 @@ function Contact() {
       });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to send message");
-      console.error(err);
+      // console.error(err);
     } finally {
       setLoading(false);
     }
@@ -124,7 +124,7 @@ function Contact() {
         err instanceof Error ? err.message : "Failed to subscribe"
       );
       toast.error("Failed to subscribe to newsletter");
-      console.error(err);
+      // console.error(err);
     }
   };
   return (

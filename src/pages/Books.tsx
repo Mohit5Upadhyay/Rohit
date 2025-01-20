@@ -75,7 +75,7 @@ function Books() {
         }))
       );
     } catch (error) {
-      console.error("Error fetching books:", error);
+      console.error("Error fetching books:");
       setError("Failed to load books");
     } finally {
       setLoading(false);
@@ -109,7 +109,7 @@ function Books() {
       );
       setBooks(books.filter((book) => book.id !== id));
     } catch (error) {
-      console.error("Error deleting book:", error);
+      console.error("Error deleting book:");
       setError("Failed to delete the book");
     }
   };

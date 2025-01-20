@@ -325,7 +325,7 @@ function Blog() {
         }))
       );
     } catch (error) {
-      console.error("Error fetching posts:", error);
+      console.error("Error fetching posts:");
       setError("Failed to load blog posts");
     } finally {
       setLoading(false);
@@ -342,7 +342,7 @@ function Blog() {
       );
       setPosts(posts.filter((post) => post.id !== id));
     } catch (error) {
-      console.error("Error deleting post:", error);
+      console.error("Error deleting post:");
       setError("Failed to delete the blog post");
     }
   };

@@ -74,7 +74,7 @@ function Layout() {
       await logout();
       navigate("/login");
     } catch (error) {
-      console.error("Logout failed:", error);
+      console.error("Logout failed:");
     }
     setShowLogoutConfirm(false);
   };
@@ -97,7 +97,7 @@ function Layout() {
         toast.success('Successfully subscribed to newsletter!');
       }
     } catch (error) {
-      console.error('Newsletter subscription failed:', error);
+      console.error('Newsletter subscription failed:');
       toast.error('Failed to subscribe. Please try again later.');
     }
   };

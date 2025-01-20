@@ -46,7 +46,7 @@ const handleSubmit = async (e: FormEvent) => {
         });
       }, 2000);
     } catch (error) {
-      console.error('Password reset failed:', error);
+      console.error('Password reset failed:');
       setError('Failed to reset password. Please try again or request a new reset link.');
     } finally {
       setIsLoading(false);

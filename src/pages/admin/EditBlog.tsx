@@ -51,7 +51,7 @@ function EditBlog() {
         imageUrl: post.imageUrl
       });
     } catch (error) {
-      console.error('Failed to fetch blog post:', error);
+      console.error('Failed to fetch blog post:');
       setError('Failed to load blog post');
     } finally {
       setLoading(false);
@@ -78,7 +78,7 @@ function EditBlog() {
         upload.$id
       );
     } catch (error) {
-      console.error('Image upload failed:', error);
+      console.error('Image upload failed:');
       throw new Error('Image upload failed');
     }
   };
@@ -120,7 +120,7 @@ function EditBlog() {
 
       navigate('/blog');
     } catch (error) {
-      console.error('Failed to update blog post:', error);
+      console.error('Failed to update blog post:');
       setError('Failed to update blog post. Please try again.');
     } finally {
       setSaving(false);

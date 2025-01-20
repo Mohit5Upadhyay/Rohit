@@ -55,7 +55,7 @@ function NewBlog() {
         upload.$id
       );
     } catch (error) {
-      console.error('Image upload failed:', error);
+      console.error('Image upload failed:');
       throw new Error('Image upload failed');
     }
   };
@@ -147,7 +147,7 @@ function NewBlog() {
 
       navigate('/blog');
     } catch (error) {
-      console.error('Failed to create blog post:', error);
+      console.error('Failed to create blog post:');
       setError('Failed to create blog post. Please try again.');
     } finally {
       setLoading(false);

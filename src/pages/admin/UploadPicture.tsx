@@ -125,7 +125,7 @@ function UploadPicture() {
 
       navigate('/pictures');
     } catch (error) {
-      console.error('Upload failed:', error);
+      console.error('Upload failed:');
       setError('Failed to upload images. Please try again.');
     } finally {
       setLoading(false);

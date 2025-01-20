@@ -61,7 +61,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
             category: doc.category
         })) as BlogPost[];
     } catch (error) {
-        console.error('Error fetching blog posts:', error);
+        console.error('Error fetching blog posts:');
         throw new Error('Failed to fetch blog posts');
     }
 };
@@ -82,7 +82,7 @@ export const getBlogPostById = async (id: number): Promise<BlogPost | null> => {
             category: response.category
         } as BlogPost;
     } catch (error) {
-        console.error('Error fetching blog post:', error);
+        console.error('Error fetching blog post:');
         return null;
     }
 };
@@ -109,7 +109,7 @@ export const createBlogPost = async (post: Omit<BlogPost, 'id'>): Promise<BlogPo
             category: response.category
         } as BlogPost;
     } catch (error) {
-        console.error('Error creating blog post:', error);
+        console.error('Error creating blog post:');
         throw new Error('Failed to create blog post');
     }
 };
@@ -131,7 +131,7 @@ export const updateBlogPost = async (id: number, post: Partial<BlogPost>): Promi
             category: response.category
         } as BlogPost;
     } catch (error) {
-        console.error('Error updating blog post:', error);
+        console.error('Error updating blog post:');
         throw new Error('Failed to update blog post');
     }
 };
@@ -144,7 +144,7 @@ export const deleteBlogPost = async (id: number): Promise<void> => {
             id.toString()
         );
     } catch (error) {
-        console.error('Error deleting blog post:', error);
+        console.error('Error deleting blog post:');
         throw new Error('Failed to delete blog post');
     }
 };
@@ -187,7 +187,7 @@ export const toggleLike = async (postId: string, userId: string): Promise<{ like
         liked: !isLiked
       };
     } catch (error) {
-      console.error('Error toggling like:', error);
+      console.error('Error toggling like:');
       throw new Error('Failed to toggle like');
     }
   };
@@ -215,7 +215,7 @@ export const getBlogPostsByCategory = async (category: string): Promise<BlogPost
             category: doc.category
         })) as BlogPost[];
     } catch (error) {
-        console.error('Error fetching blog posts by category:', error);
+        console.error('Error fetching blog posts by category:');
         throw new Error('Failed to fetch blog posts by category');
     }
 };
@@ -239,7 +239,7 @@ export const searchBlogPosts = async (searchTerm: string): Promise<BlogPost[]> =
             category: doc.category
         })) as BlogPost[];
     } catch (error) {
-        console.error('Error searching blog posts:', error);
+        console.error('Error searching blog posts:');
         throw new Error('Failed to search blog posts');
     }
 };
@@ -288,7 +288,7 @@ export const searchBlogPosts = async (searchTerm: string): Promise<BlogPost[]> =
             buyLink: doc.buyLink 
         })) as Book[];
     } catch (error) {
-        console.error('Error fetching books:', error);
+        console.error('Error fetching books:');
         throw new Error('Failed to fetch books');
     }
 };
@@ -313,7 +313,7 @@ export const getBookById = async (id: number): Promise<Book | null> => {
             
         } as Book;
     } catch (error) {
-        console.error('Error fetching book:', error);
+        console.error('Error fetching book:');
         return null;
     }
 };
@@ -342,7 +342,7 @@ export const createBook = async (book: Omit<Book, 'id'>): Promise<Book> => {
            
         } as Book;
     } catch (error) {
-        console.error('Error creating book:', error);
+        console.error('Error creating book:');
         throw new Error('Failed to create book');
     }
 };
@@ -371,7 +371,7 @@ export const updateBook = async (id: number, book: Partial<Book>): Promise<Book>
             
         } as Book;
     } catch (error) {
-        console.error('Error updating book:', error);
+        console.error('Error updating book:');
         throw new Error('Failed to update book');
     }
 };
@@ -384,7 +384,7 @@ export const deleteBook = async (id: number): Promise<void> => {
             id.toString()
         );
     } catch (error) {
-        console.error('Error deleting book:', error);
+        console.error('Error deleting book:');
         throw new Error('Failed to delete book');
     }
 };
@@ -409,7 +409,7 @@ export const getBooksByCategory = async (category: string): Promise<Book[]> => {
             buyLink: doc.buyLink || ''
         })) as Book[];
     } catch (error) {
-        console.error('Error fetching books by category:', error);
+        console.error('Error fetching books by category:');
         throw new Error('Failed to fetch books by category');
     }
 };
@@ -434,7 +434,7 @@ export const searchBooks = async (searchTerm: string): Promise<Book[]> => {
             awards: doc.awards || []
         })) as Book[];
     } catch (error) {
-        console.error('Error searching books:', error);
+        console.error('Error searching books:');
         throw new Error('Failed to search books');
     }
 };
@@ -490,7 +490,7 @@ export const submitContactForm = async (message: Omit<ContactMessage, 'id' | 'da
             status: response.status
         } as ContactMessage;
     } catch (error) {
-        console.error('Error submitting contact form:', error);
+        console.error('Error submitting contact form:');
         throw new Error('Failed to submit contact form');
     }
 };
@@ -527,7 +527,7 @@ export const getContactMessages = async (
           status: doc.status
       })) as ContactMessage[];
   } catch (error) {
-      console.error('Error fetching contact messages:', error);
+      console.error('Error fetching contact messages:');
       throw new Error('Failed to fetch contact messages');
   }
 };
@@ -550,7 +550,7 @@ export const getContactMessageById = async (id: string): Promise<ContactMessage 
           status: response.status
       } as ContactMessage;
   } catch (error) {
-      console.error('Error fetching contact message:', error);
+      console.error('Error fetching contact message:');
       return null;
   }
 };
@@ -583,7 +583,7 @@ export const getContactMessageById = async (id: string): Promise<ContactMessage 
             description: doc.description
         })) as Image[];
     } catch (error) {
-        console.error('Error fetching images:', error);
+        console.error('Error fetching images:');
         throw new Error('Failed to fetch images');
     }
 };
@@ -607,7 +607,7 @@ export const getImagesByCategory = async (category: string): Promise<Image[]> =>
             description: doc.description
         })) as Image[];
     } catch (error) {
-        console.error('Error fetching images by category:', error);
+        console.error('Error fetching images by category:');
         throw new Error('Failed to fetch images by category');
     }
 };
@@ -646,7 +646,7 @@ export const uploadImage = async (file: File, metadata: Omit<Image, 'id' | 'url'
           description: response.description
       } as Image;
   } catch (error) {
-      console.error('Error uploading image:', error);
+      console.error('Error uploading image:');
       throw new Error('Failed to upload image');
   }
 };
@@ -675,7 +675,7 @@ export const deleteImage = async (id: number): Promise<void> => {
           id.toString()
       );
   } catch (error) {
-      console.error('Error deleting image:', error);
+      console.error('Error deleting image:');
       throw new Error('Failed to delete image');
   }
 };
@@ -735,7 +735,7 @@ export const searchContent = async (query: string): Promise<{
           })) as Image[]
       };
   } catch (error) {
-      console.error('Error searching content:', error);
+      console.error('Error searching content:');
       throw new Error('Failed to search content');
   }
 };
@@ -758,7 +758,7 @@ export const updateImageMetadata = async (id: number, metadata: Partial<Image>):
           description: response.description
       } as Image;
   } catch (error) {
-      console.error('Error updating image metadata:', error);
+      console.error('Error updating image metadata:');
       throw new Error('Failed to update image metadata');
   }
 };
@@ -779,7 +779,7 @@ export const getImageById = async (id: number): Promise<Image | null> => {
           description: response.description
       } as Image;
   } catch (error) {
-      console.error('Error fetching image:', error);
+      console.error('Error fetching image:');
       return null;
   }
 };
@@ -803,7 +803,7 @@ export const getRecentImages = async (limit: number = 10): Promise<Image[]> => {
           description: doc.description
       })) as Image[];
   } catch (error) {
-      console.error('Error fetching recent images:', error);
+      console.error('Error fetching recent images:');
       throw new Error('Failed to fetch recent images');
   }
 };

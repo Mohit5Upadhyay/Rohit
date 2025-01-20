@@ -63,7 +63,7 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
       await loginWithGoogleOnSignUpPage();
     } catch (error) {
       setError("Google sign in failed");
-      console.error(error);
+      // console.error(error);
     } finally {
       setIsLoading(false);
     }

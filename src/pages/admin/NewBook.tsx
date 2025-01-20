@@ -69,7 +69,7 @@ function NewBook() {
 
       navigate('/books');
     } catch (error) {
-      console.error('Failed to create book:', error);
+      console.error('Failed to create book:');
       setError('Failed to create book. Please try again.');
     } finally {
       setLoading(false);

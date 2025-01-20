@@ -27,7 +27,7 @@ function Login() {
       navigate("/");
     } catch (error) {
       setError("Invalid email or password");
-      console.error(error);
+      // console.error(error);
     } finally {
       setIsLoading(false);
     }
