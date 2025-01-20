@@ -1,0 +1,41 @@
+# robots.txt for rohitupadhyay.com
+
+# Allow all good bots
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /books/
+Allow: /about/
+Allow: /contact/
+
+# Block sensitive areas
+Disallow: /admin/
+Disallow: /login/
+Disallow: /signup/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.php$
+Disallow: /*?*
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Crawl-delay: 1
+Allow: /blog/*.html
+Allow: /books/*.html
+
+User-agent: Bingbot
+Crawl-delay: 1
+Allow: /blog/*.html
+Allow: /books/*.html
+
+# Block AI training bots
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+# Sitemaps
+Sitemap: https://www.rohitupadhyay.com/sitemap.xml
