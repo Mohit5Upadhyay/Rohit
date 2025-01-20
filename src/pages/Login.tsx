@@ -37,11 +37,11 @@ function Login() {
   const handleGoogleLogin = async () => {
     try {
       setIsLoading(true);
-      setError(null);
       await loginWithGoogle();
+      setError(null);
     } catch (error) {
-      setError("Google sign in failed");
-      console.error(error);
+      // setError("Google sign in failed");
+      // console.error(error);
     } finally {
       setIsLoading(false);
     }
