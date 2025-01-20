@@ -4,7 +4,8 @@ import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../appwrite/auth';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
+import { FcGoogle } from 'react-icons/fc';
+// import { FaLinkedin } from 'react-icons/fa';
 interface SignupForm {
   name: string;
   email: string;
@@ -23,7 +24,8 @@ function Signup() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const { signup } = useAuth();
+  // const { signup,loginWithGoogle,loginWithLinkedIn } = useAuth();
+  const { signup,loginWithGoogle } = useAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -52,6 +54,33 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
       setIsLoading(false);
     }
   };
+
+
+  const handleGoogleLogin = async () => {
+    try {
+      setIsLoading(true);
+      setError('');
+      await loginWithGoogle();
+    } catch (error) {
+      setError("Google sign in failed");
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  // const handleLinkedInLogin = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     setError('');
+  //     await loginWithLinkedIn();
+  //   } catch (error) {
+  //     setError("LinkedIn sign in failed");
+  //     console.error(error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -225,8 +254,51 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
                          text-center text-sm font-medium text-white hover:bg-white/5
                          transition-all duration-200"
               >
-                Sign in
+                Sign in with  Email
               </Link>
+
+
+
+
+
+              <div className="mt-6">
+                  <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-white/10" />
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                      <span className="px-2 bg-transparent text-gray-400">
+                        Or continue with
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 space-y-3">
+                    <button
+                      onClick={handleGoogleLogin}
+                      disabled={isLoading}
+                      className="w-full flex items-center justify-center gap-3 py-3 px-4 
+                                border border-white/10 rounded-lg bg-white/5 
+                                text-sm font-medium text-white
+                                hover:bg-white/10 transition-all duration-200"
+                    >
+                      <FcGoogle className="h-5 w-5" />
+                      Sign in with Google
+                    </button>
+
+                    {/* <button
+                      onClick={handleLinkedInLogin}
+                      disabled={isLoading}
+                      className="w-full flex items-center justify-center gap-3 py-3 px-4 
+                                border border-white/10 rounded-lg bg-white/5 
+                                text-sm font-medium text-white
+                                hover:bg-white/10 transition-all duration-200"
+                    >
+                      <FaLinkedin className="h-5 w-5 text-[#0A66C2]" />
+                      Sign in with LinkedIn
+                    </button> */}
+                  </div>
+                </div>
             </div>
           </div>
         </div>

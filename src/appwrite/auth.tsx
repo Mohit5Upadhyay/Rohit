@@ -6,7 +6,7 @@
 import { createContext, useState, useEffect, ReactNode, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { account, client } from './appwriteConfig';
-import { ID, Models, Teams } from 'appwrite';
+import { ID, Models, Teams, OAuthProvider } from 'appwrite';
 import conf from '../config/conf';
 
 const teams = new Teams(client);
@@ -33,9 +33,12 @@ interface AuthContextType {
     logout: () => Promise<void>;
     resetPassword: (email: string) => Promise<void>;
     updateProfile: (name: string) => Promise<void>;
+    checkAuth: () => Promise<void>;
     // sendVerificationEmail: () => Promise<void>;
     isAdmin: () => boolean;
     clearError: () => void;
+    loginWithGoogle: () => Promise<void>;
+  loginWithLinkedIn: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -47,9 +50,12 @@ const AuthContext = createContext<AuthContextType>({
     logout: async () => {},
     resetPassword: async () => {},
     updateProfile: async () => {},
+    checkAuth:async()=>{},
     // sendVerificationEmail: async () => {},
     isAdmin: () => false,
-    clearError: () => {}
+    clearError: () => {},
+    loginWithGoogle: async () => {},
+    loginWithLinkedIn: async () => {}
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
@@ -147,6 +153,65 @@ const login = async (email: string, password: string) => {
         setLoading(false);
     }
 };
+
+
+
+const loginWithGoogle = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      await account.createOAuth2Session(
+        OAuthProvider.Google,
+        `${window.location.origin}/`,
+        `${window.location.origin}/login`,
+        ['profile', 'email']
+      );
+
+      // Get user details after OAuth login
+      const currentUser = await account.get();
+      const userWithRole = await updateUserWithRole(currentUser);
+      setUser(userWithRole);
+
+      navigate(userWithRole.role === 'admin' ? '/admin/dashboard' : '/');
+    } catch (error: any) {
+      console.error('Google OAuth error:', error);
+      setError(error.message);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
+
+  const loginWithLinkedIn = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      await account.createOAuth2Session(
+        OAuthProvider.Linkedin,
+        `${window.location.origin}/`,
+        `${window.location.origin}/login`,
+        ['r_liteprofile', 'r_emailaddress']
+      );
+
+      const currentUser = await account.get();
+      const userWithRole = await updateUserWithRole(currentUser);
+      setUser(userWithRole);
+
+      navigate(userWithRole.role === 'admin' ? '/admin/dashboard' : '/');
+    } catch (error: any) {
+      console.error('LinkedIn OAuth error:', error);
+      setError(error.message);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
 // const signup = async (email: string, password: string, name: string, role: 'admin' | 'user' = 'user') => {
 //     try {
@@ -383,9 +448,12 @@ const logout = async () => {
         logout,
         resetPassword,
         updateProfile,
+        checkAuth,
         // sendVerificationEmail,
        isAdmin,
-       clearError
+       clearError,
+       loginWithGoogle,
+        loginWithLinkedIn,
     };
 
     return (

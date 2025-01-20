@@ -5,7 +5,7 @@ import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../appwrite/auth";
 import { useNewsletter } from "../hooks/useNewsletter";
 import { toast, Toaster } from 'react-hot-toast';
-import { Analytics} from '@vercel/analytics/react';
+
 
 
 // Banner mapping
@@ -386,7 +386,7 @@ function Layout() {
             </p>
           </div>
         </footer>
-      <Analytics/>
+    
     </div>
   );
 }
