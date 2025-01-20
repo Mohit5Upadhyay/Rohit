@@ -428,7 +428,8 @@ function BlogPost() {
             alt={post.title}
             loading="eager"
             fetchPriority="high"
-            className="w-full h-[400px] object-cover"
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
           />
 
           <div className="p-6 md:p-8 leading-relaxed">
