@@ -369,15 +369,23 @@ function Layout() {
         </div>
       )}
 
-      <footer className="bg-slate-900 text-center p-4 mt-auto">
-        <div className="flex flex-col items-center">
-          <img src="https://www.rohitupadhyay.me/footer.webp" alt="Footer Image" className="w-16 h-16 mb-2" />
-          <p className="text-gold">
-            &copy; {new Date().getFullYear()} www.rohitupadhyay.me | All rights
-            reserved.
-          </p>
-        </div>
-      </footer>
+        <footer className="bg-slate-900 text-center p-4 mt-auto">
+          <div className="flex flex-col items-center">
+            <div className="relative w-16 aspect-square mb-2 overflow-hidden rounded-lg group">
+              <img 
+                src="/footer.webp" 
+                alt="Rohit Upadhyay Logo"
+                width={281}
+                height={350}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+            <p className="text-gold">
+              &copy; {new Date().getFullYear()} www.rohitupadhyay.me | All rights reserved.
+            </p>
+          </div>
+        </footer>
       <Analytics/>
     </div>
   );
