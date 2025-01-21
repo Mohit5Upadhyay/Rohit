@@ -6,9 +6,9 @@ export default {
   ],
   extend: {
     colors: {
-      turquoise: '#2ce6d3',
+      // turquoise: '#2ce6d3',
       gold: '#FFD700',
-      'classic-blue': '#166cb8',
+      // 'classic-blue': '#166cb8',
     },
     keyframes: {
       fadeIn: {
