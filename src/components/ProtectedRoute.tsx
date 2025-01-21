@@ -6,8 +6,8 @@ function ProtectedRoute() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-turquoise flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-classic-blue"></div>
+      <div className="min-h-screen  flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold"></div>
       </div>
     );
   }
