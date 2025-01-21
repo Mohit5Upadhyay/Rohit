@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                 membership.confirm
             );
         } catch (error) {
-            console.error('Error checking admin status:', error);
+            console.error('Error checking admin status:');
             return false;
         }
     };
@@ -140,7 +140,7 @@ const login = async (email: string, password: string) => {
             navigate(userWithRole.role === 'admin' ? '/admin/dashboard' : '/');
         } catch (teamError) {
             // Handle teams permission error gracefully
-            console.warn('Unable to check admin status:', teamError);
+            console.warn('Unable to check admin status:');
             // Set as regular user if teams check fails
             setUser({
                 ...currentUser,
@@ -165,17 +165,14 @@ const loginWithGoogle = async () => {
       
       await account.createOAuth2Session(
         OAuthProvider.Google,
-        `${window.location.origin}/`,
+        `${window.location.origin}/`,//success url
         `${window.location.origin}/login`,
         
       );
-
-      // Get user details after OAuth login
-     await account.get();
      navigate('/');
      
     } catch (error: any) {
-      console.error('Google OAuth error:', error);
+      console.error('Google OAuth error:');
       setError(error.message);
       throw error;
     } finally {
@@ -199,13 +196,13 @@ const loginWithGoogleOnSignUpPage = async () => {
       );
 
       // Get user details after OAuth login
-      const currentUser = await account.get();
-      const userWithRole = await updateUserWithRole(currentUser);
-      setUser(userWithRole);
+    //   const currentUser = await account.get();
+    //   const userWithRole = await updateUserWithRole(currentUser);
+    //   setUser(userWithRole);
 
-      navigate(userWithRole.role === 'admin' ? '/' : '/');
+    //   navigate(userWithRole.role === 'admin' ? '/' : '/');
     } catch (error: any) {
-      console.error('Google OAuth error:', error);
+      console.error('Google OAuth error:');
       setError(error.message);
       throw error;
     } finally {
@@ -308,7 +305,7 @@ const signup = async (email: string, password: string, name: string, role: 'admi
             password,
             name
         );
-        console.log('User created successfully:', newUser);
+        console.log('User created successfully:');
 
         // Create session and send verification
         try {
@@ -318,7 +315,7 @@ const signup = async (email: string, password: string, name: string, role: 'admi
             // await sendVerificationEmail();
             // console.log('Verification email sent');
         } catch (sessionError) {
-            console.error('Session/verification error:', sessionError);
+            console.error('Session/verification error:');
             setError('Account created but session failed. Please try logging in.');
         }
 
@@ -333,7 +330,7 @@ const signup = async (email: string, password: string, name: string, role: 'admi
                 );
                 console.log('Added to admin team');
             } catch (teamError) {
-                console.error('Admin team error:', teamError);
+                console.error('Admin team error:');
                 role = 'user';
             }
         }
@@ -356,7 +353,7 @@ const signup = async (email: string, password: string, name: string, role: 'admi
         // });
         navigate('/')
     } catch (error: any) {
-        console.error('Signup failed:', error);
+        console.error('Signup failed:');
         setError(error.message);
         throw error;
     } finally {
@@ -379,7 +376,7 @@ const logout = async () => {
         setUser(null);
         navigate('/login');
     } catch (error: any) {
-        console.error('Logout error:', error);
+        console.error('Logout error:');
         
         // Force client-side logout even if server request fails
         setUser(null);
