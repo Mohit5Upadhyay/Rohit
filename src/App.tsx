@@ -3,6 +3,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './appwrite/auth';
+// import { useAuth } from './appwrite/auth';
 import Layout from './pages/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
@@ -25,12 +26,34 @@ import NewBlog from './pages/admin/NewBlog';
 import EditBlog from './pages/admin/EditBlog';
 import UploadPicture from './pages/admin/UploadPicture';
 import NewBook from './pages/admin/NewBook';
+import { useEffect } from 'react';
+import requestPermission from "./requestPermission";
+import { account } from './appwrite/appwriteConfig';
+// import handleMessages from './firebase/handleMessage';
 
 function App() {
+  useEffect(() => {
+    const initNotifications = async () => {
+      const currentUser = await account.get();
+      if (currentUser?.$id) {
+        try {
+          await requestPermission(currentUser.$id);
+        } catch (error) {
+          console.error('Failed to initialize notifications:', error);
+        }
+      }
+    };
+
+    initNotifications();
+  }, []);
+
+  // useEffect(() => {
+  //   requestPermission();
+  // }, []); 
   return (
     <Router>
       <AuthProvider>
-        <div className="font-sans min-h-screen bg-turquoise">
+        <div className="font-sans min-h-screen bg-[#000]">
           <Routes>
             {/* Public auth routes */}
             <Route path="/login" element={<Login />} />
@@ -48,10 +71,10 @@ function App() {
               <Route path="/pictures" element={<Pictures />} />
 
               {/* Protected blog routes */}
-              <Route element={<ProtectedRoute />}>
+              {/* <Route element={<ProtectedRoute />}> */}
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:id" element={<BlogPost />} />
-              </Route>
+              {/* </Route> */}
 
               {/* Admin-only blog actions */}
               <Route element={<ProtectedRoute />}>
