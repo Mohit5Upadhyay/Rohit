@@ -26,26 +26,26 @@ import NewBlog from './pages/admin/NewBlog';
 import EditBlog from './pages/admin/EditBlog';
 import UploadPicture from './pages/admin/UploadPicture';
 import NewBook from './pages/admin/NewBook';
-import { useEffect } from 'react';
-import requestPermission from "./requestPermission";
-import { account } from './appwrite/appwriteConfig';
+// import { useEffect } from 'react';
+// import requestPermission from "./requestPermission";
+// import { account } from './appwrite/appwriteConfig';
 // import handleMessages from './firebase/handleMessage';
 
 function App() {
-  useEffect(() => {
-    const initNotifications = async () => {
-      const currentUser = await account.get();
-      if (currentUser?.$id) {
-        try {
-          await requestPermission(currentUser.$id);
-        } catch (error) {
-          console.error('Failed to initialize notifications:', error);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const initNotifications = async () => {
+  //     const currentUser = await account.get();
+  //     if (currentUser?.$id) {
+  //       try {
+  //         await requestPermission(currentUser.$id);
+  //       } catch (error) {
+  //         console.error('Failed to initialize notifications:', error);
+  //       }
+  //     }
+  //   };
 
-    initNotifications();
-  }, []);
+  //   initNotifications();
+  // }, []);
 
   // useEffect(() => {
   //   requestPermission();
