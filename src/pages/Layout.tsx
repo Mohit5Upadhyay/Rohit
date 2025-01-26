@@ -132,7 +132,7 @@ function Layout() {
         }}
       />
       <header className="text-center p-4">
-        <div className="relative h-[30vh] rounded-lg overflow-hidden">
+        <div className="relative w-full h-[20vh] md:h-[30vh] lg:h-[40vh] rounded-lg overflow-hidden">
           <img
             src={currentBanner}
             alt="Page Banner"
@@ -141,6 +141,7 @@ function Layout() {
             className={`w-full h-full object-cover transition-opacity duration-300 ${
               isChangingBanner ? "opacity-0" : "opacity-100"
             }`}
+           
           />
         </div>
       </header>
@@ -371,22 +372,31 @@ function Layout() {
 
         <footer className="bg-slate-900 text-center p-4 mt-auto">
           <div className="flex flex-col items-center">
-            <div className="relative w-16 aspect-square mb-2 overflow-hidden rounded-lg group">
+            <div className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 mb-2 overflow-hidden rounded-lg group">
               <img 
                 src="/footer.webp" 
                 alt="Rohit Upadhyay Logo"
                 width={281}
                 height={350}
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-150"
+                sizes="(max-width: 768px) 48px, (max-width: 1200px) 64px, 80px"
               />
             </div>
+            
             <p className="text-gold">
               &copy; {new Date().getFullYear()} www.rohitupadhyay.me | All rights reserved.
             </p>
           </div>
         </footer>
     
+
+
+
+
+
+
+
     </div>
   );
 }
