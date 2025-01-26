@@ -332,37 +332,103 @@ function BlogPost() {
   // };
 
 
-
-  const handleLike = async () => {
-    if (!user) {
-      alert('Please login to like posts');
-      return;
-    }
+/////comment just for temporary prupose
+  // const handleLike = async () => {
+  //   if (!user) {
+  //     alert('Please login to like posts');
+  //     return;
+  //   }
   
-    if (isLiked) {
-      alert('You have already liked this post');
-      return;
+  //   if (isLiked) {
+  //     alert('You have already liked this post');
+  //     return;
+  //   }
+  
+  //   try {
+  //     setIsLikeLoading(true);
+  //     if (!post) return;
+  //     const updatedLikedBy = [...post.likedBy, user.$id];
+      
+  //     await databases.updateDocument(
+  //       conf.appwriteDatabaseId,
+  //       conf.appwriteBlogCollectionId,
+  //       post.id,
+  //       {
+  //         likes: post.likes + 1,
+  //         likedBy: updatedLikedBy
+  //       }
+  //     );
+  
+  //     setLikeCount(prev => prev + 1);
+  //     setIsLiked(true);
+  //   } catch (error) {
+  //     console.error('Error updating likes:');
+  //   } finally {
+  //     setIsLikeLoading(false);
+  //   }
+  // };
+
+
+
+
+  useEffect(() => {
+    if (post) {
+      const guestLike = localStorage.getItem(`blog_like_${post.id}`);
+      const userLike = user ? post.likedBy?.includes(user.$id) : false;
+      setIsLiked(userLike || guestLike === 'true');
+      setLikeCount(post.likes || 0);
     }
+  }, [post, user]);
+
+  // Updated handleLike function
+  const handleLike = async () => {
+    if (!post || isLikeLoading) return;
   
     try {
       setIsLikeLoading(true);
-      if (!post) return;
-      const updatedLikedBy = [...post.likedBy, user.$id];
       
-      await databases.updateDocument(
-        conf.appwriteDatabaseId,
-        conf.appwriteBlogCollectionId,
-        post.id,
-        {
-          likes: post.likes + 1,
-          likedBy: updatedLikedBy
+      if (user) {
+        // Handling authenticated user likes
+        if (isLiked) {
+          alert('You have already liked this post');
+          return;
         }
-      );
+        
+        const updatedLikedBy = [...post.likedBy, user.$id];
+        await databases.updateDocument(
+          conf.appwriteDatabaseId,
+          conf.appwriteBlogCollectionId,
+          post.id,
+          {
+            likes: post.likes + 1,
+            likedBy: updatedLikedBy
+          }
+        );
+      } else {
+        // Handling guest likes
+        const guestLike = localStorage.getItem(`blog_like_${post.id}`);
+        if (guestLike === 'true') {
+          alert('You have already liked this post');
+          return;
+        }
+        
+        await databases.updateDocument(
+          conf.appwriteDatabaseId,
+          conf.appwriteBlogCollectionId,
+          post.id,
+          {
+            likes: post.likes + 1,
+            likedBy: post.likedBy
+          }
+        );
+        
+        localStorage.setItem(`blog_like_${post.id}`, 'true');
+      }
   
       setLikeCount(prev => prev + 1);
       setIsLiked(true);
     } catch (error) {
-      console.error('Error updating likes:');
+      console.error('Error updating likes:', error);
     } finally {
       setIsLikeLoading(false);
     }
