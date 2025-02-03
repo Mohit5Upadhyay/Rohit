@@ -159,7 +159,7 @@ function Contact() {
           </h1>
 
           <div className="grid md:grid-cols-2 gap-12 mb-16">
-            <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-xl p-8">
+            <div className="bg-white/5 backdrop-blur-md rounded-lg shadow-xl p-8">
               <h2 className="text-3xl font-semibold text-gold mb-6">
                 Send a Message
               </h2>
@@ -248,7 +248,7 @@ function Contact() {
             </div>
 
             <div className="space-y-8">
-              <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-xl p-8">
+              <div className="bg-white/5 backdrop-blur-md rounded-lg shadow-xl p-8">
                 <h2 className="text-3xl font-semibold text-gold mb-4">
                   Connect
                 </h2>
@@ -294,7 +294,7 @@ function Contact() {
                 </div>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-xl p-8">
+              <div className="bg-white/5 backdrop-blur-md rounded-lg shadow-xl p-8">
                 <h2 className="text-3xl font-semibold text-gold mb-4">
                   <FaMapMarkerAlt className="inline-block mr-2" />
                   Location
@@ -307,7 +307,7 @@ function Contact() {
                 </p>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-md rounded-lg shadow-xl p-8">
+              <div className="bg-white/5 backdrop-blur-md rounded-lg shadow-xl p-8">
                 <h2 className="text-3xl font-semibold text-gold mb-4">
                   Subscribe to my Newsletter
                 </h2>
