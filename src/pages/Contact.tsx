@@ -254,7 +254,7 @@ function Contact() {
                 </h2>
                 <div className="flex space-x-4">
                   <a
-                    href="https://twitter.com/mohit5upadhyay"
+                    href="https://twitter.com/rohit5upadhyay"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gold hover:text-white transition-colors"

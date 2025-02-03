@@ -1,7 +1,7 @@
 
 
 import { useState, useRef, useEffect } from "react";
-import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Link, Outlet, useNavigate, useLocation, NavLink } from "react-router-dom";
 import { useAuth } from "../appwrite/auth";
 import { useNewsletter } from "../hooks/useNewsletter";
 import { toast, Toaster } from 'react-hot-toast';
@@ -154,70 +154,304 @@ function Layout() {
               onMouseEnter={() => handleMouseEnter(setShowAboutDropdown)}
               onMouseLeave={() => handleMouseLeave(setShowAboutDropdown)}
             >
-              <Link
+              <NavLink
                 to="/about"
                 className="text-classic-blue hover:text-gold transition-colors"
+                style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
               >
                 About
-              </Link>
+              </NavLink>
               {showAboutDropdown && (
                 <div className="absolute top-full left-0 mt-2 w-40 bg-white rounded-lg shadow-lg z-10">
-                  <Link
+                  <NavLink
                     to="/"
-                    className="block px-4 py-2 text-classic-blue hover:text-gold hover:bg-gray-50"
+                    className="block px-4 py-2 text-classic-blue hover:text-gold rounded-lg hover:bg-gray-50"
+                    style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
+
                   >
                     Biography
-                  </Link>
+                  </NavLink>
                 </div>
               )}
             </div>
 
-            <Link
+            <NavLink
               to="/blog"
               className="text-classic-blue hover:text-gold transition-colors"
+              style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
+
             >
               Blogs
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/contact"
               className="text-classic-blue hover:text-gold transition-colors"
+              style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
+
             >
               Contact
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/pictures"
               className="text-classic-blue hover:text-gold transition-colors"
-            >
-              Pictures
-            </Link>
+              style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
 
-            <Link
+            >
+              Story Board
+            </NavLink>
+
+            <NavLink
               to="/books"
               className="text-classic-blue hover:text-gold transition-colors"
+              style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
+
             >
               Books
-            </Link>
+            </NavLink>
 
             {user ? (
               <button
                 onClick={handleLogoutClick}
                 className="text-classic-blue hover:text-gold transition-colors"
+
+                
               >
                 Logout
               </button>
             ) : (
-              <Link
+              <NavLink
                 to="/login"
                 className="text-classic-blue hover:text-gold transition-colors"
+                style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
+
               >
                 Login
-              </Link>
+              </NavLink>
             )}
           </div>
         </div>
       </nav>
+
+      
+
+{/* <nav className="sticky top-0 z-50 mx-4 md:mx-20 mb-5 transition-all duration-300">
+  <div className="backdrop-blur-md bg-white/90 rounded-xl shadow-lg border border-gray-200/20">
+    <div className="flex flex-wrap justify-center gap-6 md:gap-12 px-6 md:px-10 py-4">
+      <div
+        className="relative group"
+        onMouseEnter={() => handleMouseEnter(setShowAboutDropdown)}
+        onMouseLeave={() => handleMouseLeave(setShowAboutDropdown)}
+      >
+        <Link
+          to="/about"
+          className="flex items-center gap-2 px-3 py-2 rounded-lg text-classic-blue 
+                     hover:text-gold transition-all duration-300 hover:bg-gray-50/50"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          About
+        </Link>
+        {showAboutDropdown && (
+          <div className="absolute top-full left-0 mt-2 w-48 backdrop-blur-md 
+                         bg-white/90 rounded-xl shadow-xl border border-gray-200/20 
+                         transform transition-all duration-300">
+            <Link
+              to="/"
+              className="flex items-center gap-2 px-4 py-3 text-classic-blue 
+                         hover:text-gold hover:bg-gray-50/50 rounded-xl"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Biography
+            </Link>
+          </div>
+        )}
+      </div>
+
+      <Link
+        to="/blog"
+        className="flex items-center gap-2 px-3 py-2 rounded-lg text-classic-blue 
+                   hover:text-gold transition-all duration-300 hover:bg-gray-50/50"
+      >
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2 2 0 00-.586-1.414l-3.5-3.5A2 2 0 0012.586 4H10" />
+        </svg>
+        Blogs
+      </Link>
+
+      <Link
+        to="/contact"
+        className="flex items-center gap-2 px-3 py-2 rounded-lg text-classic-blue 
+                   hover:text-gold transition-all duration-300 hover:bg-gray-50/50"
+      >
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        Contact
+      </Link>
+
+      <Link
+        to="/pictures"
+        className="flex items-center gap-2 px-3 py-2 rounded-lg text-classic-blue 
+                   hover:text-gold transition-all duration-300 hover:bg-gray-50/50"
+      >
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Pictures
+      </Link>
+
+      <Link
+        to="/books"
+        className="flex items-center gap-2 px-3 py-2 rounded-lg text-classic-blue 
+                   hover:text-gold transition-all duration-300 hover:bg-gray-50/50"
+      >
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+        Books
+      </Link>
+
+      {user ? (
+        <button
+          onClick={handleLogoutClick}
+          className="flex items-center gap-2 px-3 py-2 rounded-lg text-classic-blue 
+                     hover:text-gold transition-all duration-300 hover:bg-gray-50/50"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Logout
+        </button>
+      ) : (
+        <Link
+          to="/login"
+          className="flex items-center gap-2 px-3 py-2 rounded-lg text-classic-blue 
+                     hover:text-gold transition-all duration-300 hover:bg-gray-50/50"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                  d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+          </svg>
+          Login
+        </Link>
+      )}
+    </div>
+  </div>
+</nav> */}
+
+
+{/* <nav className="mx-4 md:mx-20 mb-5">
+  <div className="bg-gradient-to-r from-white/90 via-white/95 to-white/90 
+                  backdrop-filter backdrop-blur-sm rounded-xl shadow-lg">
+    <div className="flex flex-wrap justify-center gap-8 md:gap-16 px-8 py-5">
+      <div
+        className="relative group"
+        onMouseEnter={() => handleMouseEnter(setShowAboutDropdown)}
+        onMouseLeave={() => handleMouseLeave(setShowAboutDropdown)}
+      >
+        <Link
+          to="/about"
+          className={`relative inline-block px-3 py-2 text-lg font-medium 
+            ${location.pathname === '/about'
+              ? 'text-gold'
+              : 'text-classic-blue hover:text-gold'} 
+            transition-colors duration-300 
+            after:content-[""] after:absolute after:w-full after:h-0.5 
+            after:bg-gold after:left-0 after:bottom-0 
+            after:origin-bottom-right after:scale-x-0 
+            hover:after:origin-bottom-left hover:after:scale-x-100 
+            after:transition-transform after:duration-300`}
+        >
+          About
+        </Link>
+        {showAboutDropdown && (
+          <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 
+                         bg-white/95 rounded-lg shadow-xl border border-gold/10 
+                         transform transition-all duration-300 origin-top">
+            <Link
+              to="/"
+              className="block px-6 py-3 text-classic-blue hover:text-gold 
+                         hover:bg-gold/5 transition-all duration-300"
+            >
+              Biography
+            </Link>
+          </div>
+        )}
+      </div>
+
+      {['blog', 'contact', 'pictures', 'books'].map((item) => (
+        <Link
+          key={item}
+          to={`/${item}`}
+          className={`relative inline-block px-3 py-2 text-lg font-medium 
+            ${location.pathname === `/${item}`
+              ? 'text-gold'
+              : 'text-classic-blue hover:text-gold'} 
+            transition-colors duration-300
+            after:content-[""] after:absolute after:w-full after:h-0.5 
+            after:bg-gold after:left-0 after:bottom-0 
+            after:origin-bottom-right after:scale-x-0 
+            hover:after:origin-bottom-left hover:after:scale-x-100 
+            after:transition-transform after:duration-300`}
+        >
+          {item.charAt(0).toUpperCase() + item.slice(1)}
+        </Link>
+      ))}
+
+      {user ? (
+        <button
+          onClick={handleLogoutClick}
+          className="relative inline-block px-3 py-2 text-lg font-medium 
+                    text-classic-blue hover:text-gold transition-colors duration-300
+                    after:content-[''] after:absolute after:w-full after:h-0.5 
+                    after:bg-gold after:left-0 after:bottom-0 
+                    after:origin-bottom-right after:scale-x-0 
+                    hover:after:origin-bottom-left hover:after:scale-x-100 
+                    after:transition-transform after:duration-300"
+        >
+          Logout
+        </button>
+      ) : (
+        <Link
+          to="/login"
+          className={`relative inline-block px-3 py-2 text-lg font-medium 
+            ${location.pathname === '/login'
+              ? 'text-gold'
+              : 'text-classic-blue hover:text-gold'} 
+            transition-colors duration-300
+            after:content-[""] after:absolute after:w-full after:h-0.5 
+            after:bg-gold after:left-0 after:bottom-0 
+            after:origin-bottom-right after:scale-x-0 
+            hover:after:origin-bottom-left hover:after:scale-x-100 
+            after:transition-transform after:duration-300`}
+        >
+          Login
+        </Link>
+      )}
+    </div>
+  </div>
+</nav> */}
+
+
+
+
+
+
+
+
+      
 
       {/* {isNewsletterVisible && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
