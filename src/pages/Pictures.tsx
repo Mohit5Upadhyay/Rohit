@@ -144,16 +144,16 @@ function Pictures() {
   return (
     <>
       <Helmet>
-        <title>Gallery - Rohit Upadhyay</title>
+        <title>Story Board - Rohit Upadhyay</title>
         <meta
           name="description"
-          content="Explore the photo gallery of Rohit Upadhyay. View memorable moments, events, and professional photographs."
+          content="Explore the collection of Rohit Upadhyay. View memorable moments, events, and professional photographs."
         />
         <meta
           name="keywords"
-          content="gallery, photos, rohit upadhyay, memories, pictures, moments"
+          content="collection, gallery, photos, rohit upadhyay, memories, pictures, moments"
         />
-        <meta property="og:title" content="Gallery - Rohit Upadhyay" />
+        <meta property="og:title" content="Collection - Rohit Upadhyay" />
         <meta
           property="og:description"
           content="Explore the photo gallery of Rohit Upadhyay. View memorable moments, events, and professional photographs."
@@ -170,9 +170,9 @@ function Pictures() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center mb-12 space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
-              <h1 className="text-5xl font-bold text-gold mb-2">Gallery</h1>
+              <h1 className="text-5xl font-bold text-gold mb-2">Story Board</h1>
               <p className="text-gray-400">
-                Explore our collection of memories
+                Explore our collection of stories..
               </p>
             </div>
 

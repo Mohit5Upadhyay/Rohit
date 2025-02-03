@@ -1,7 +1,7 @@
 
 
 import { useState, useRef, useEffect } from "react";
-import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useNavigate, useLocation, NavLink } from "react-router-dom";
 import { useAuth } from "../appwrite/auth";
 import { useNewsletter } from "../hooks/useNewsletter";
 import { toast, Toaster } from 'react-hot-toast';
@@ -154,70 +154,88 @@ function Layout() {
               onMouseEnter={() => handleMouseEnter(setShowAboutDropdown)}
               onMouseLeave={() => handleMouseLeave(setShowAboutDropdown)}
             >
-              <Link
+              <NavLink
                 to="/about"
                 className="text-classic-blue hover:text-gold transition-colors"
+                style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
               >
                 About
-              </Link>
+              </NavLink>
               {showAboutDropdown && (
                 <div className="absolute top-full left-0 mt-2 w-40 bg-white rounded-lg shadow-lg z-10">
-                  <Link
+                  <NavLink
                     to="/"
-                    className="block px-4 py-2 text-classic-blue hover:text-gold hover:bg-gray-50"
+                    className="block px-4 py-2 text-classic-blue hover:text-gold rounded-lg hover:bg-gray-50"
+                    style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
+
                   >
                     Biography
-                  </Link>
+                  </NavLink>
                 </div>
               )}
             </div>
 
-            <Link
+            <NavLink
               to="/blog"
               className="text-classic-blue hover:text-gold transition-colors"
+              style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
+
             >
               Blogs
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/contact"
               className="text-classic-blue hover:text-gold transition-colors"
+              style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
+
             >
               Contact
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/pictures"
               className="text-classic-blue hover:text-gold transition-colors"
-            >
-              Pictures
-            </Link>
+              style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
 
-            <Link
+            >
+              Story Board
+            </NavLink>
+
+            <NavLink
               to="/books"
               className="text-classic-blue hover:text-gold transition-colors"
+              style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
+
             >
               Books
-            </Link>
+            </NavLink>
 
             {user ? (
               <button
                 onClick={handleLogoutClick}
                 className="text-classic-blue hover:text-gold transition-colors"
+
+                
               >
                 Logout
               </button>
             ) : (
-              <Link
+              <NavLink
                 to="/login"
                 className="text-classic-blue hover:text-gold transition-colors"
+                style={({isActive}) => (isActive ? {color: '#0f4c81', fontWeight:800} : undefined)}
+
               >
                 Login
-              </Link>
+              </NavLink>
             )}
           </div>
         </div>
       </nav>
+
+ 
+      
 
       {/* {isNewsletterVisible && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
