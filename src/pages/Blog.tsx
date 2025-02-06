@@ -368,6 +368,7 @@ function Blog() {
         <meta property="og:title" content="Blog - Rohit Upadhyay" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://www.rohitupadhyay.me/blog" />
+
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black py-12 px-6">

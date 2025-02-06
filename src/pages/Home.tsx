@@ -24,6 +24,7 @@ function Home() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.rohitupadhyay.me" />
         <link rel="canonical" href="https://www.rohitupadhyay.me" />
+        
       </Helmet>
     
 
