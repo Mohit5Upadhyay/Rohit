@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             const adminTeam = teamsList.teams.find(team => team.$id === ADMIN_TEAM_ID);
             
             if (!adminTeam) {
-                console.error('Admin team not found');
+                // console.error('Admin team not found');
                 return false;
             }
     
@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                 membership.confirm
             );
         } catch (error) {
-            console.error('Error checking admin status:');
+            // console.error('Error checking admin status:');
             return false;
         }
     };
@@ -140,7 +140,7 @@ const login = async (email: string, password: string) => {
             navigate(userWithRole.role === 'admin' ? '/admin/dashboard' : '/');
         } catch (teamError) {
             // Handle teams permission error gracefully
-            console.warn('Unable to check admin status:');
+            // console.warn('Unable to check admin status:');
             // Set as regular user if teams check fails
             setUser({
                 ...currentUser,
@@ -202,7 +202,7 @@ const loginWithGoogleOnSignUpPage = async () => {
 
     //   navigate(userWithRole.role === 'admin' ? '/' : '/');
     } catch (error: any) {
-      console.error('Google OAuth error:');
+    //   console.error('Google OAuth error:');
       setError(error.message);
       throw error;
     } finally {
@@ -296,7 +296,7 @@ const signup = async (email: string, password: string, name: string, role: 'admi
     try {
         setLoading(true);
         setError(null);
-        console.log('Starting signup process...');
+        // console.log('Starting signup process...');
 
         // Create user
         const newUser = await account.create(
@@ -305,7 +305,7 @@ const signup = async (email: string, password: string, name: string, role: 'admi
             password,
             name
         );
-        console.log('User created successfully:');
+        // console.log('User created successfully:');
 
         // Create session and send verification
         try {
@@ -315,7 +315,7 @@ const signup = async (email: string, password: string, name: string, role: 'admi
             // await sendVerificationEmail();
             // console.log('Verification email sent');
         } catch (sessionError) {
-            console.error('Session/verification error:');
+            // console.error('Session/verification error:');
             setError('Account created but session failed. Please try logging in.');
         }
 
@@ -328,9 +328,9 @@ const signup = async (email: string, password: string, name: string, role: 'admi
                     'owner',
                     `${window.location.origin}/verify-admin`
                 );
-                console.log('Added to admin team');
+                // console.log('Added to admin team');
             } catch (teamError) {
-                console.error('Admin team error:');
+                // console.error('Admin team error:');
                 role = 'user';
             }
         }
@@ -353,7 +353,7 @@ const signup = async (email: string, password: string, name: string, role: 'admi
         // });
         navigate('/')
     } catch (error: any) {
-        console.error('Signup failed:');
+        // console.error('Signup failed:');
         setError(error.message);
         throw error;
     } finally {
@@ -376,7 +376,7 @@ const logout = async () => {
         setUser(null);
         navigate('/login');
     } catch (error: any) {
-        console.error('Logout error:');
+        // console.error('Logout error:');
         
         // Force client-side logout even if server request fails
         setUser(null);
